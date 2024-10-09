@@ -1,0 +1,16 @@
+{
+	"prettier.requireConfig": true,
+	"prettier.trailingComma": "es5",
+	"prettier.bracketSpacing": true,
+	"eslint.useFlatConfig": true,
+	"eslint.format.enable": true,
+	"eslint.workingDirectories": [],
+	"[php]": {
+		"editor.defaultFormatter": "valeryanm.vscode-phpsab",
+		"editor.formatOnSave": true
+	},
+	"phpsab.standard": "WordPress",
+	"phpsab.snifferEnable": true,
+	"phpsab.snifferMode": "onSave",
+	"phpsab.snifferArguments": ["--ignore=*/vendor/*"]
+}

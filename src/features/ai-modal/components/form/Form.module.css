@@ -1,0 +1,7 @@
+.form {
+	display: grid;
+	gap: 1rem;
+
+	padding-inline: 0.75rem;
+	padding-block: 0.75rem;
+}

@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "./build/",
+		"target": "es2021",
+		"module": "commonjs",
+		"jsx": "react-jsx",
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"paths": {
+			"*": ["*"],
+			"@constants/*": ["src/constants/*"],
+			"@features/*": ["src/features/*"],
+			"@stores/*": ["src/stores/*"],
+			"@hooks/*": ["src/hooks/*"]
+		},
+		"lib": ["ES2021.String"]
+	},
+	"include": ["./src/**/*", "./types/**/*"],
+	"typeRoots": [
+		"./node_modules/@types",
+		"./node_modules/@wordpress",
+		"./types"
+	]
+}

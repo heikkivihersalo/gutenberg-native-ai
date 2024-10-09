@@ -1,0 +1,7 @@
+**/components/**/__deprecated__/*.js
+**/node_modules/**
+**/build/**
+**/dist/**
+**/public/**
+**/vendor/**
+**/coverage-ts/**
