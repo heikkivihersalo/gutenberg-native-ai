@@ -55,8 +55,8 @@ function deactivate_gutenberg_native_ai() {
 	Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_gutenberg_native_ai' );
-register_deactivation_hook( __FILE__, 'deactivate_gutenberg_native_ai' );
+register_activation_hook( __FILE__, __NAMESPACE__ . '\activate_gutenberg_native_ai' );
+register_deactivation_hook( __FILE__, __NAMESPACE__ . '\deactivate_gutenberg_native_ai' );
 
 /**
  * The core plugin class that is used to define internationalization,
