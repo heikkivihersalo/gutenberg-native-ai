@@ -29,7 +29,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin and API versions.
  */
-define( 'GUTENBERG_NATIVE_AI_VERSION', '0.0.1' );
+define( 'GUTENBERG_NATIVE_AI_VERSION', '1.0.0' );
 define( 'GUTENBERG_NATIVE_AI_API_VERSION', '1' );
 
 /**
