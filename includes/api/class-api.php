@@ -3,7 +3,7 @@
  * The main API class file
  *
  * @link       https://www.kotisivu.dev
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * This class handles the core API functionality for the plugin.
  *
- * @since      1.0.0
+ * @since      0.1.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -21,7 +21,7 @@ class API {
 	/**
 	 * The base endpoint for this API.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @access   protected
 	 * @var      string    $base The base endpoint for this API.
 	 */
@@ -30,7 +30,7 @@ class API {
 	/**
 	 * The unique identifier for this API endpoint (plugin name).
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @access   protected
 	 * @var      string    $plugin_name The string used to uniquely identify this plugin.
 	 */
@@ -39,7 +39,7 @@ class API {
 	/**
 	 * The current version of the API endpoint.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @access   protected
 	 * @var      string    $version The current version of the API endpoint.
 	 */
@@ -62,7 +62,7 @@ class API {
 	/**
 	 * Load dependencies
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access private
 	 * @return void
 	 */
@@ -76,7 +76,7 @@ class API {
 	/**
 	 * Register plugin API routes
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @return void
 	 */

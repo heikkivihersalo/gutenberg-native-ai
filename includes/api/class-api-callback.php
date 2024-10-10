@@ -3,7 +3,7 @@
  * The API callback class file
  *
  * @link       https://www.kotisivu.dev
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * This class handles the API callbacks for the plugin.
 
- * @since      1.0.0
+ * @since      0.1.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */

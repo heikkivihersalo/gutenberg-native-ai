@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * Class responsible for encrypting and decrypting data.
  *
- * @since 1.0.0
+ * @since 0.1.0
  * @access private
  * @ignore
  */
@@ -22,7 +22,7 @@ final class Data_Encryption {
 	/**
 	 * Key to use for encryption.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @var string
 	 */
 	private $key;
@@ -30,7 +30,7 @@ final class Data_Encryption {
 	/**
 	 * Salt to use for encryption.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @var string
 	 */
 	private $salt;
@@ -38,7 +38,7 @@ final class Data_Encryption {
 	/**
 	 * Constructor.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 */
 	public function __construct() {
 		$this->key  = $this->get_default_key();
@@ -50,7 +50,7 @@ final class Data_Encryption {
 	 *
 	 * If a user-based key is set, that key is used. Otherwise the default key is used.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
 	 * @param string $value Value to encrypt.
 	 * @return string|bool Encrypted value, or false on failure.
@@ -77,7 +77,7 @@ final class Data_Encryption {
 	 *
 	 * If a user-based key is set, that key is used. Otherwise the default key is used.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
 	 * @param string $raw_value Value to decrypt.
 	 * @return string|bool Decrypted value, or false on failure.
@@ -106,7 +106,7 @@ final class Data_Encryption {
 	/**
 	 * Gets the default encryption key to use.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
 	 * @return string Default (not user-based) encryption key.
 	 */
@@ -126,7 +126,7 @@ final class Data_Encryption {
 	/**
 	 * Gets the default encryption salt to use.
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 *
 	 * @return string Encryption salt.
 	 */

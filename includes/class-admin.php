@@ -3,7 +3,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://www.kotisivu.dev
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * This class defines all code necessary handle the admin area.
  *
- * @since      1.0.0
+ * @since      0.1.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -21,7 +21,7 @@ class Admin {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @access   protected
 	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
 	 */
@@ -30,7 +30,7 @@ class Admin {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @access   protected
 	 * @var      string    $version    The current version of the plugin.
 	 */
@@ -39,7 +39,7 @@ class Admin {
 	/**
 	 * Constructor
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 * @param string $plugin_name The string used to uniquely identify this plugin.
 	 * @param string $version     The current version of the plugin.
 	 */

@@ -3,7 +3,7 @@
  * The API utility functions file
  *
  * @link       https://www.kotisivu.dev
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * This class handles the API utility functions for the plugin.
  *
- * @since      1.0.0
+ * @since      0.1.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -27,7 +27,7 @@ final class API_Utils {
 	/**
 	 * Get ChatGPT settings from the database
 	 *
-	 * @since   1.0.0
+	 * @since   0.1.0
 	 * @access  public
 	 * @return  array
 	 */
@@ -52,7 +52,7 @@ final class API_Utils {
 	/**
 	 * Update ChatGPT settings in the database
 	 *
-	 * @since   1.0.0
+	 * @since   0.1.0
 	 * @access  public
 	 * @param   \WP_REST_Request $request Request object.
 	 * @return  array
@@ -92,7 +92,7 @@ final class API_Utils {
 	/**
 	 * Get content from Open AI
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @param \WP_REST_Request $request Request object.
 	 * @return Object
@@ -141,7 +141,7 @@ final class API_Utils {
 	/**
 	 * Get content from Open AI
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @param \WP_REST_Request $request Request object.
 	 * @return Object
@@ -187,7 +187,7 @@ final class API_Utils {
 	 *
 	 * @see https://gist.github.com/cyberwani/ad5452b040001878d692c3165836ebff
 	 *
-	 * @since 1.0.0
+	 * @since 0.1.0
 	 * @access public
 	 * @param \WP_REST_Request $request Request object.
 	 * @return Object
