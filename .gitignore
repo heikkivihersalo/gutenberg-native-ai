@@ -63,6 +63,7 @@ dist
 out
 target
 vendor
+gutenberg-native-ai.zip
 
 ### Environment ###
 .env

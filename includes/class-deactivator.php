@@ -3,7 +3,7 @@
  * Fired during plugin deactivation
  *
  * @link       https://www.kotisivu.dev
- * @since      1.0.0
+ * @since      0.1.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -15,7 +15,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  *
  * This class defines all code necessary to run during the plugin's deactivation.
  *
- * @since      1.0.0
+ * @since      0.1.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -25,7 +25,7 @@ class Deactivator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    0.1.0
 	 */
 	public static function deactivate() {
 	}

@@ -3,7 +3,7 @@
  * The bootstrap file for the plugin.
  *
  * @link              https://www.kotisivu.dev
- * @since             1.0.0
+ * @since             0.1.0
  * @package           Gutenberg_Native_Ai
  */
 
