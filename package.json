@@ -1,13 +1,14 @@
 {
-	"name": "kotisivu-block-theme",
+	"name": "gutenberg-native-ai",
 	"version": "1.0.0",
-	"description": "Lightweight block theme",
+	"description": "A plugin that extends the Gutenberg editor with AI features designed to work natively with WordPress.",
 	"author": "Hekki Vihersalo",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
+		"zip": "wp-scripts plugin-zip",
 		"format": "wp-scripts format",
 		"lint": "yarn lint:css && yarn lint:js && yarn lint:php",
 		"lint:css": "wp-scripts lint-style 'src/**/*.css'",
@@ -16,9 +17,7 @@
 		"lint:php:fix": "./vendor/bin/phpcbf",
 		"test:php": "./vendor/bin/phpunit"
 	},
-	"dependencies": {
-		"@wordpress/keyboard-shortcuts": "^5.9.0"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"@eslint/js": "^9.11.0",
 		"@types/eslint__js": "^8.42.3",
@@ -47,5 +46,34 @@
 	"resolutions": {
 		"@typescript-eslint/typescript-estree": "^7.16.0"
 	},
-	"files": []
+	"files": [
+		".github/workflows",
+		".vscode",
+		"build/admin",
+		"build/ai",
+		"includes",
+		"languages",
+		"src",
+		"types",
+		".editorconfig",
+		".eslintignore",
+		".eslintrc.json",
+		".gitignore",
+		".prettierignore",
+		".prettierrc.js",
+		".stylelintrc.json",
+		"bootstrap.php",
+		"composer.json",
+		"composer.lock",
+		"gutenberg-native-ai.php",
+		"index.php",
+		"LICENSE.txt",
+		"package.json",
+		"phpcs.xml",
+		"README.md",
+		"tsconfig.json",
+		"uninstall.php",
+		"webpack.config.js",
+		"yarn.lock"
+	]
 }
