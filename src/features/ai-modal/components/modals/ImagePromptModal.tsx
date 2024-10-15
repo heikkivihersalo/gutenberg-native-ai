@@ -8,22 +8,23 @@ import { useSelect, useDispatch } from '@wordpress/data';
 /**
  * Internal dependencies
  */
-import { MODAL_STATUS } from '@constants/modal';
 
+import { useChatGPT } from '@hooks';
 import Form from '../form/Form';
 import PromptControl from '../form/PromptControl';
 import WarningText from '../form/WarningText';
 import ImagePreview from '../image-preview/ImagePreview';
 
-import { getAiImageContent } from '../../utils';
+import { MODAL_STATUS } from '@constants/modal';
 
-import { ModalStatus } from 'types/modal';
+import type { ModalStatus } from 'types/modal';
 
 /**
  * ImagePromptModal component
  * @return {JSX.Element} Popover component
  */
 const ImagePromptModal = (): JSX.Element | null => {
+	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
 	const { status } = useSelect((select: any) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
@@ -31,8 +32,7 @@ const ImagePromptModal = (): JSX.Element | null => {
 	}, []);
 
 	const { setStatus } = useDispatch('theme/ai');
-
-	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
+	const { getImage } = useChatGPT();
 
 	const modalOpen =
 		status === MODAL_STATUS.VISIBLE || status === MODAL_STATUS.LOADING;
@@ -68,7 +68,7 @@ const ImagePromptModal = (): JSX.Element | null => {
 		/**
 		 * Fetch the block content
 		 */
-		const images = await getAiImageContent({
+		const images = await getImage({
 			prompt: formData.get('prompt'),
 		});
 
