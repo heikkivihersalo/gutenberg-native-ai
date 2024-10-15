@@ -7,7 +7,6 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import ImagePreviewItem from './ImagePreviewItem';
-import { ChatGPTImage } from '@api';
 
 /**
  * Image preview component

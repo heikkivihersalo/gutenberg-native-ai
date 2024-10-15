@@ -3,12 +3,8 @@
  */
 import { __ } from '@wordpress/i18n';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import {
-	ShortcutProvider,
-	useShortcut,
-	store,
-} from '@wordpress/keyboard-shortcuts';
-import { useState, useEffect, useCallback } from '@wordpress/element';
+import { ShortcutProvider, useShortcut } from '@wordpress/keyboard-shortcuts';
+import { useState, useCallback } from '@wordpress/element';
 import { Popover } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 /**
@@ -36,17 +32,6 @@ const BlockEditControl = createHigherOrderComponent(function (
 	BlockEdit: React.ComponentType<any>
 ) {
 	return (props: any) => {
-		/**
-		 * Only allow AI controls for selected blocks
-		 */
-		if (!ALLOWED_TEXT_BLOCKS.includes(props.name)) {
-			return <BlockEdit {...props} />;
-		}
-
-		if (!props.isSelected) {
-			return <BlockEdit {...props} />;
-		}
-
 		/**
 		 * Handle anchor state
 		 * - This is used to position the popover window at correct position
@@ -87,6 +72,20 @@ const BlockEditControl = createHigherOrderComponent(function (
 			}, [])
 		);
 
+		/**
+		 * Only allow AI controls for selected blocks
+		 */
+		if (!ALLOWED_TEXT_BLOCKS.includes(props.name)) {
+			return <BlockEdit {...props} />;
+		}
+
+		if (!props.isSelected) {
+			return <BlockEdit {...props} />;
+		}
+
+		/**
+		 * Handle the modal
+		 */
 		return (
 			<ShortcutProvider>
 				<BlockEdit {...props} />
