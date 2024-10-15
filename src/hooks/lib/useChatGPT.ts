@@ -10,15 +10,21 @@ import apiFetch from '@wordpress/api-fetch';
 import { API_PATH } from '@constants/api';
 import type { ChatGPTPromptInput } from '@hooks';
 
+type ReturnProps = {
+	getText: (props: ChatGPTPromptInput) => Promise<string>;
+	getImage: (props: ChatGPTPromptInput) => Promise<ChatGPTImage[]>;
+};
+
 /**
- *
+ * Custom hook for ChatGPT API
+ * @return {ReturnProps} ChatGPT API functions
  */
-function useChatGPT() {
+function useChatGPT(): ReturnProps {
 	/**
 	 * Get text content from ChatGPT
 	 * @param {UserInput} props
 	 * @param {FormDataEntryValue | null} props.prompt
-	 * @return {Promise<string>}
+	 * @return {Promise<string>} Generated text
 	 */
 	const getText = async ({
 		prompt,
@@ -39,7 +45,7 @@ function useChatGPT() {
 	 *
 	 * @param {UserInput} props
 	 * @param {FormDataEntryValue | null} props.prompt
-	 * @return {Promise<ChatGPTImage[]>}
+	 * @return {Promise<ChatGPTImage[]>} Generated image
 	 */
 	const getImage = async ({
 		prompt,
