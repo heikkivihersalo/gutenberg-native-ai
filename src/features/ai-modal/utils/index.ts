@@ -1,6 +1,4 @@
 export * from './lib/addBlocksToEditor';
-export * from './lib/getAiTextContent';
-export * from './lib/getAiImageContent';
 export * from './lib/getBlockAnchor';
 export * from './lib/getSelectedText';
 export * from './lib/handleListItems';
