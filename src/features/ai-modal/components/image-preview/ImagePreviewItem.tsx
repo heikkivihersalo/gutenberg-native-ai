@@ -12,6 +12,8 @@ const { insertBlock } = wp.data.dispatch('core/editor');
 /**
  * Internal dependencies
  */
+import { API_PATH } from '@constants/api';
+
 import styles from './ImagePreviewItem.module.css';
 
 type Attachment = {
@@ -37,7 +39,7 @@ const ImagePreviewItem = ({ src }: Props): JSX.Element | null => {
 	const handleSave = async () => {
 		const response = await apiFetch({
 			method: 'POST',
-			path: 'gutenberg-native-ai/v1/ai/image/save',
+			path: API_PATH.SAVE_IMAGE,
 			data: {
 				base64: src,
 				title: 'AI generated image',
