@@ -116,6 +116,11 @@ class Plugin {
 		require_once plugin_dir_path( __DIR__ ) . 'includes/api/class-api.php';
 
 		/**
+		 * The class responsible for handling plugin notice messages
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-notice.php';
+
+		/**
 		 * Finally load the loader class.
 		 */
 		$this->loader = new Loader();
