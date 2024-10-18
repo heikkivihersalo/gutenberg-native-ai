@@ -54,8 +54,13 @@ class Scripts {
 	 * @access   public
 	 */
 	public function enqueue_styles() {
-		$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.css', array(), $assets, 'all' );
+		if ( file_exists( plugin_dir_url( __DIR__ ) . 'build/ai/index.css' ) ) :
+			$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.css', array(), $assets, 'all' );
+		else :
+			$notice = new Notice( __( 'Plugin stylesheet assets are missing. Run `yarn` and/or `yarn build` to generate them.', 'gutenberg-native-ai' ) );
+			$notice->display();
+		endif;
 	}
 
 	/**
@@ -65,7 +70,12 @@ class Scripts {
 	 * @access   public
 	 */
 	public function enqueue_scripts() {
-		$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.js', $assets['dependencies'], $assets['version'], true );
+		if ( file_exists( plugin_dir_url( __DIR__ ) . 'build/ai/index.js' ) ) :
+			$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.js', $assets['dependencies'], $assets['version'], true );
+		else :
+			$notice = new Notice( __( 'Plugin script assets are missing. Run `yarn` and/or `yarn build` to generate them.', 'gutenberg-native-ai' ) );
+			$notice->display();
+		endif;
 	}
 }
