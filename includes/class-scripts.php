@@ -54,7 +54,7 @@ class Scripts {
 	 * @access   public
 	 */
 	public function enqueue_styles() {
-		if ( file_exists( plugin_dir_url( __DIR__ ) . 'build/ai/index.css' ) ) :
+		if ( file_exists( plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php' ) ) :
 			$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.css', array(), $assets, 'all' );
 		else :
@@ -70,7 +70,7 @@ class Scripts {
 	 * @access   public
 	 */
 	public function enqueue_scripts() {
-		if ( file_exists( plugin_dir_url( __DIR__ ) . 'build/ai/index.js' ) ) :
+		if ( file_exists( plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php' ) ) :
 			$assets = include plugin_dir_path( __DIR__ ) . 'build/ai/index.asset.php';
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __DIR__ ) . 'build/ai/index.js', $assets['dependencies'], $assets['version'], true );
 		else :

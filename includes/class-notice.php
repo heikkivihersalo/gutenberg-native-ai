@@ -33,6 +33,7 @@ class Notice {
 	 * Define the plugin notice
 	 *
 	 * @since    0.1.1
+	 * @param string $message The message
 	 */
 	public function __construct( string $message ) {
 		$this->message = $message;

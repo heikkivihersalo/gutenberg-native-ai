@@ -55,21 +55,27 @@ const BlockEditControl = createHigherOrderComponent(function (
 		 */
 		useShortcut(
 			'gutenberg-native-ai/shortcut-ai-open',
-			useCallback(async (event: KeyboardEvent) => {
-				const currentSelection = await getCurrentSelection();
+			useCallback(
+				async (event: KeyboardEvent) => {
+					const currentSelection = await getCurrentSelection();
 
-				if (currentSelection) {
-					await setSelection(currentSelection);
-					await setStatus(MODAL_STATUS.VISIBLE);
+					if (currentSelection) {
+						await setSelection(currentSelection);
+						await setStatus(MODAL_STATUS.VISIBLE);
 
-					const blockAnchor = await getBlockAnchor(
-						currentSelection.block?.clientId
-					);
+						const blockAnchor = await getBlockAnchor(
+							currentSelection.block?.clientId
+						);
 
-					setAnchor(blockAnchor);
-					highlightTextSelection(blockAnchor, currentSelection.text);
-				}
-			}, [])
+						setAnchor(blockAnchor);
+						highlightTextSelection(
+							blockAnchor,
+							currentSelection.text
+						);
+					}
+				},
+				[setSelection, setStatus]
+			)
 		);
 
 		/**

@@ -10,7 +10,7 @@
  * Plugin Name:       Gutenberg Native AI (Beta)
  * Plugin URI:        https://www.kotisivu.dev
  * Description:       A plugin that extends the Gutenberg editor with AI features designed to work natively with WordPress.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Author:            Heikki Vihersalo
  * Author URI:        https://www.kotisivu.dev/
  * License:           GPL-2.0+
@@ -18,7 +18,7 @@
  * Text Domain:       gutenberg-native-ai
  * Domain Path:       /languages
  * Requires at least: 6.5.2
- * Requires PHP: 	  8.2
+ * Requires PHP:      8.2
  */
 
 namespace Kotisivu\Gutenberg_Native_AI;
@@ -31,7 +31,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin and API versions.
  */
-define( 'GUTENBERG_NATIVE_AI_VERSION', '0.1.1' );
+define( 'GUTENBERG_NATIVE_AI_VERSION', '0.1.2' );
 define( 'GUTENBERG_NATIVE_AI_API_VERSION', '1' );
 
 /**
