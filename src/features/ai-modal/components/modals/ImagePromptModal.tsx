@@ -25,7 +25,7 @@ import type { ModalStatus } from 'types/modal';
  */
 const ImagePromptModal = (): JSX.Element | null => {
 	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
-	const { status } = useSelect((select: any) => {
+	const { status } = useSelect((select: WPAny) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
 		};
