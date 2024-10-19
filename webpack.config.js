@@ -18,19 +18,21 @@
  * Import path and glob modules
  * @type {import('path')}
  */
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
 /**
  * Import the default Webpack configuration from WordPress scripts
  * @type {import('webpack').Configuration}
  */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 /**
  * Import custom Webpack packages
  * @type {import('webpack').Configuration}
  */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const CopyPlugin = require('copy-webpack-plugin');
 
 /*--------------------------------------------------------------
