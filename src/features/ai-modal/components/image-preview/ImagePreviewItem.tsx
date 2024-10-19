@@ -5,7 +5,7 @@ import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { createBlock } from '@wordpress/blocks';
 
-declare const wp: any;
+declare const wp: WPAny;
 
 const { insertBlock } = wp.data.dispatch('core/editor');
 

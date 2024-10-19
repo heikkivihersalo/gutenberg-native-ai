@@ -7,8 +7,10 @@
 		"commonjs": true
 	},
 	"extends": [
+		"plugin:import/recommended",
 		"plugin:@wordpress/eslint-plugin/recommended",
-		"plugin:import/recommended"
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended"
 	],
 	"settings": {
 		"import/resolver": {

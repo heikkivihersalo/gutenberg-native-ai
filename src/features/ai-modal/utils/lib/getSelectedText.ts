@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-declare const wp: any;
+declare const wp: WPAny;
 const { getSelectionStart, getSelectionEnd } =
 	wp.data.select('core/block-editor');
 

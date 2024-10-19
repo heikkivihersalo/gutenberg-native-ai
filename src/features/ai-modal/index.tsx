@@ -8,7 +8,7 @@ import { addFilter } from '@wordpress/hooks';
  */
 import BlockEditControl from './components/BlockEditControl';
 
-declare const wp: any;
+declare const wp: WPAny;
 
 /**
  * Filters

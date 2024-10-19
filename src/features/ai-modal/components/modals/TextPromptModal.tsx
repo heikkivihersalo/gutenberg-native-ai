@@ -24,7 +24,7 @@ import type { ModalStatus, ModalSelection } from 'types/modal';
  * @return {JSX.Element} Popover component
  */
 const TextPromptModal = (): JSX.Element | null => {
-	const { status, selection } = useSelect((select: any) => {
+	const { status, selection } = useSelect((select: WPAny) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
 			selection: select('theme/ai').getSelection() as ModalSelection,
