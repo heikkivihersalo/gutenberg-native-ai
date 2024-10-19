@@ -8,7 +8,7 @@
  * @package    Gutenberg_Native_Ai
  */
 
-namespace Kotisivu\Gutenberg_Native_AI;
+namespace Kotisivu\Gutenberg_Native_AI\Api;
 
 /**
  * This class handles the API callbacks for the plugin.
@@ -17,7 +17,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
-class API_Callback {
+class Callbacks {
 	/**
 	 * Get ChatGPT settings
 	 *
@@ -25,7 +25,7 @@ class API_Callback {
 	 */
 	public function get_settings(): \WP_REST_Response|\WP_Error {
 		try {
-			$result = API_Utils::get_chatgpt_settings();
+			$result = Utils::get_chatgpt_settings();
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
 		}
@@ -50,7 +50,7 @@ class API_Callback {
 	 */
 	public function update_settings( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
-			$result = API_Utils::update_chatgpt_settings( $request );
+			$result = Utils::update_chatgpt_settings( $request );
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
 		}
@@ -75,7 +75,7 @@ class API_Callback {
 	 */
 	public function generate_text( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
-			$result = API_Utils::get_open_ai_text_content( $request );
+			$result = Utils::get_open_ai_text_content( $request );
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
 		}
@@ -92,7 +92,7 @@ class API_Callback {
 	 */
 	public function generate_image( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
-			$result = API_Utils::get_open_ai_image_content( $request );
+			$result = Utils::get_open_ai_image_content( $request );
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
 		}
@@ -109,7 +109,7 @@ class API_Callback {
 	 */
 	public function save_image_to_media_library( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
-			$result = API_Utils::save_image_to_media_library( $request );
+			$result = Utils::save_image_to_media_library( $request );
 		} catch ( \Exception $e ) {
 			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
 		}

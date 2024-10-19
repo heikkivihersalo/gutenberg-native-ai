@@ -8,7 +8,7 @@
  * @package    Gutenberg_Native_Ai
  */
 
-namespace Kotisivu\Gutenberg_Native_AI;
+namespace Kotisivu\Gutenberg_Native_AI\Api;
 
 /**
  * This class handles the core API functionality for the plugin.
@@ -17,7 +17,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
-class API {
+class Routes {
 	/**
 	 * The base endpoint for this API.
 	 *
@@ -67,10 +67,10 @@ class API {
 	 * @return void
 	 */
 	private function load_dependencies() {
-		require_once plugin_dir_path( __FILE__ ) . 'class-data-encryption.php';
-		require_once plugin_dir_path( __FILE__ ) . 'enum-api-permission.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-api-utils.php';
-		require_once plugin_dir_path( __FILE__ ) . 'class-api-callback.php';
+		require_once plugin_dir_path( __DIR__ ) . 'class-encryption.php';
+		require_once plugin_dir_path( __FILE__ ) . 'enums/enum-permissions.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-utils.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-callbacks.php';
 	}
 
 	/**
@@ -81,7 +81,7 @@ class API {
 	 * @return void
 	 */
 	public function register_endpoints(): void {
-		$callback = new API_Callback();
+		$callback = new Callbacks();
 
 		/**
 		 * Route for getting ChatGPT settings
@@ -94,7 +94,7 @@ class API {
 			array(
 				'methods'             => \WP_REST_Server::READABLE, // Alias for GET transport method.
 				'callback'            => array( $callback, 'get_settings' ),
-				'permission_callback' => API_Permission::ADMIN->get_callback(),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
 
@@ -109,7 +109,7 @@ class API {
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for POST transport method.
 				'callback'            => array( $callback, 'update_settings' ),
-				'permission_callback' => API_Permission::ADMIN->get_callback(),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
 
@@ -124,7 +124,7 @@ class API {
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
 				'callback'            => array( $callback, 'generate_text' ),
-				'permission_callback' => API_Permission::ADMIN->get_callback(),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
 
@@ -139,7 +139,7 @@ class API {
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
 				'callback'            => array( $callback, 'generate_image' ),
-				'permission_callback' => API_Permission::ADMIN->get_callback(),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
 
@@ -154,7 +154,7 @@ class API {
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
 				'callback'            => array( $callback, 'save_image_to_media_library' ),
-				'permission_callback' => API_Permission::ADMIN->get_callback(),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
 	}

@@ -10,6 +10,8 @@
 
 namespace Kotisivu\Gutenberg_Native_AI;
 
+use Kotisivu\Gutenberg_Native_AI\Api\Routes;
+
 /**
  * The core plugin class.
  *
@@ -113,7 +115,7 @@ class Plugin {
 		/**
 		 * The class responsible for handling API requests.
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/api/class-api.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/api/class-routes.php';
 
 		/**
 		 * The class responsible for handling plugin notice messages
@@ -148,7 +150,7 @@ class Plugin {
 	 * @access   private
 	 */
 	private function add_api_routes() {
-		$plugin_api = new API( $this->get_plugin_name(), $this->get_api_version() );
+		$plugin_api = new Routes( $this->get_plugin_name(), $this->get_api_version() );
 
 		$this->loader->add_action( 'rest_api_init', $plugin_api, 'register_endpoints' );
 	}

@@ -8,7 +8,7 @@
  * @package    Gutenberg_Native_Ai
  */
 
-namespace Kotisivu\Gutenberg_Native_AI;
+namespace Kotisivu\Gutenberg_Native_AI\Api;
 
 /**
  * Enum Permission
@@ -17,7 +17,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
-enum API_Permission {
+enum Permissions {
 	/**
 	 * Admin permission
 	 *

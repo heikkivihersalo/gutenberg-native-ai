@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Google\Site_Kit\Core\Storage\Data_Encryption
+ * Original class name Google\Site_Kit\Core\Storage\Data_Encryption
  *
  * @package   Google\Site_Kit
  * @copyright 2019 Google LLC
@@ -17,7 +17,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  * @access private
  * @ignore
  */
-final class Data_Encryption {
+final class Encryption {
 
 	/**
 	 * Key to use for encryption.
