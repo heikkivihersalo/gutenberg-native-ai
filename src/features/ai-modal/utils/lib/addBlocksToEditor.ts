@@ -3,7 +3,7 @@
  */
 import type { BlockInstance } from '@wordpress/blocks';
 
-declare const wp: any;
+declare const wp: WPAny;
 
 const { getBlockOrder, getBlockParents } = wp.data.select('core/block-editor');
 const { insertBlock } = wp.data.dispatch('core/editor');

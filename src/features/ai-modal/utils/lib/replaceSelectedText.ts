@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-declare const wp: any;
+declare const wp: WPAny;
 const { create, insert, toHTMLString } = wp.richText;
 const { updateBlock } = wp.data.dispatch('core/block-editor');
 
