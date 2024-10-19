@@ -73,7 +73,12 @@ const TextPromptModal = (): JSX.Element | null => {
 			selection: selection.text,
 		});
 
-		if (formData.get('use-selected')) {
+		/**
+		 * Check if user has highlighted text and replace it
+		 * - If `selection.end` equals `selection.start` then it means no text is selected
+		 * - If text is selected then replace it with AI generated content (e.g translation)
+		 */
+		if (selection.start !== selection.end) {
 			replateSelectedText({
 				block: selection.block,
 				text: aiContent,
