@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { ShortcutProvider, useShortcut } from '@wordpress/keyboard-shortcuts';
 import { useState, useCallback } from '@wordpress/element';
@@ -25,13 +24,13 @@ import type { ModalSettings } from 'types/modal';
 
 /**
  * Higher order component to add AI controls to the paragraph block
- * @param {React.ComponentType<any>} BlockEdit - The block edit component
+ * @param {React.ComponentType<BlockEditProps>} BlockEdit - The block edit component
  * @return {JSX.Element}
  */
 const BlockEditControl = createHigherOrderComponent(function (
-	BlockEdit: React.ComponentType<any>
+	BlockEdit: React.ComponentType<BlockEditProps>
 ) {
-	return (props: any) => {
+	return (props: BlockEditProps) => {
 		/**
 		 * Handle anchor state
 		 * - This is used to position the popover window at correct position
@@ -42,7 +41,7 @@ const BlockEditControl = createHigherOrderComponent(function (
 		/**
 		 * Handle state from the redux store
 		 */
-		const { settings } = useSelect((select: any) => {
+		const { settings } = useSelect((select: WPAny) => {
 			return {
 				settings: select('theme/ai').getSettings() as ModalSettings,
 			};
@@ -55,27 +54,21 @@ const BlockEditControl = createHigherOrderComponent(function (
 		 */
 		useShortcut(
 			'gutenberg-native-ai/shortcut-ai-open',
-			useCallback(
-				async (event: KeyboardEvent) => {
-					const currentSelection = await getCurrentSelection();
+			useCallback(async () => {
+				const currentSelection = await getCurrentSelection();
 
-					if (currentSelection) {
-						await setSelection(currentSelection);
-						await setStatus(MODAL_STATUS.VISIBLE);
+				if (currentSelection) {
+					await setSelection(currentSelection);
+					await setStatus(MODAL_STATUS.VISIBLE);
 
-						const blockAnchor = await getBlockAnchor(
-							currentSelection.block?.clientId
-						);
+					const blockAnchor = await getBlockAnchor(
+						currentSelection.block?.clientId
+					);
 
-						setAnchor(blockAnchor);
-						highlightTextSelection(
-							blockAnchor,
-							currentSelection.text
-						);
-					}
-				},
-				[setSelection, setStatus]
-			)
+					setAnchor(blockAnchor);
+					highlightTextSelection(blockAnchor, currentSelection.text);
+				}
+			}, [setSelection, setStatus])
 		);
 
 		/**
