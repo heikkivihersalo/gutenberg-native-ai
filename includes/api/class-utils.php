@@ -8,7 +8,9 @@
  * @package    Gutenberg_Native_Ai
  */
 
-namespace Kotisivu\Gutenberg_Native_AI;
+namespace Kotisivu\Gutenberg_Native_AI\Api;
+
+use Kotisivu\Gutenberg_Native_AI\Encryption;
 
 /**
  * This class handles the API utility functions for the plugin.
@@ -17,7 +19,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
-final class API_Utils {
+final class Utils {
 	/**
 	 * This utility class should never be instantiated.
 	 */
@@ -40,7 +42,7 @@ final class API_Utils {
 			)
 		);
 
-		$encryptor         = new \Kotisivu\Gutenberg_Native_AI\Data_Encryption();
+		$encryptor         = new Encryption();
 		$decrypted_api_key = $encryptor->decrypt( $settings['api_key'] );
 
 		return array(
