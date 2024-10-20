@@ -37,6 +37,24 @@ class Admin {
 	protected $version;
 
 	/**
+	 * The name of the localized object
+	 *
+	 * @since    0.1.3
+	 * @access   protected
+	 * @var      string    LOCALIZED_OBJECT_NAME    The name of the localized object
+	 */
+	protected const LOCALIZED_OBJECT_NAME = 'GUTENBERG_NATIVE_AI';
+
+	/**
+	 * The admin page name
+	 *
+	 * @since    0.1.3
+	 * @access   protected
+	 * @var      string    ADMIN_PAGE_NAME    The name of the admin page
+	 */
+	protected const ADMIN_PAGE_NAME = 'Gutenberg Native AI';
+
+	/**
 	 * Constructor
 	 *
 	 * @since    0.1.0
@@ -49,14 +67,60 @@ class Admin {
 	}
 
 	/**
-	 * Get the HTML for the theme options
+	 * Check if the current page is the plugin's admin page
 	 *
+	 * @since    0.1.3
+	 * @param string $hook The current admin page
+	 * @return bool
+	 */
+	private function is_admin_page( string $hook ): bool {
+		return str_contains( $hook, 'settings_page_' . $this->plugin_name );
+	}
+
+	/**
+	 * Check user permissions
+	 *
+	 * @since    0.1.3
 	 * @return void
 	 */
-	public function get_html() {
+	public function check_user_permissions(): void {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( 'You do not have sufficient permissions to access this page' );
 		}
+	}
+
+	/**
+	 * Check if the plugin's admin assets exist and display a notice if they don't
+	 *
+	 * @since    0.1.3
+	 * @param string $path The path to the asset
+	 * @return booboolean
+	 */
+	public function asset_exists( string $path ): bool {
+		if ( ! file_exists( $path ) ) :
+			$message = sprintf(
+				/* translators: The path to the missing plugin admin asset file */
+				__( 'Plugin admin assets in a path "%s" are missing. Run `yarn` and/or `yarn build` to generate them.', 'gutenberg-native-ai' ),
+				$path
+			);
+
+			$notice = new Notice( $message );
+			$notice->display();
+
+			return false;
+		endif;
+
+		return true;
+	}
+
+	/**
+	 * Get the HTML for the theme options
+	 *
+	 * @since    0.1.0
+	 * @return void
+	 */
+	public function get_admin_html(): void {
+		$this->check_user_permissions(); // Check user permissions before rendering the page
 
 		ob_start();
 		require plugin_dir_path( __DIR__ ) . 'build/admin/render.php';
@@ -64,55 +128,69 @@ class Admin {
 	}
 
 	/**
-	 * Enqueue theme option related assets
+	 * Add the plugin options page to the admin menu under `Settings`
 	 *
-	 * @param string $hook The current admin page
+	 * @since    0.1.3
 	 * @return void
 	 */
-	public function enqueue_scripts( $hook ) {
-		if ( ! str_contains( $hook, 'toplevel_page_' . $this->plugin_name ) ) {
+	public function add_plugin_options(): void {
+		add_options_page(
+			__( 'Gutenberg Native AI Options', 'gutenberg-native-ai' ), // Page Title
+			self::ADMIN_PAGE_NAME, // Menu Title
+			'manage_options',
+			$this->plugin_name,  // Menu Slug
+			array( $this, 'get_admin_html' ), // Callback function
+		);
+	}
+
+	/**
+	 * Register the admin styles
+	 *
+	 * @since    0.1.3
+	 * @return void
+	 */
+	public function enqueue_styles(): void {
+		$asset_path      = plugin_dir_path( __DIR__ ) . 'build/admin/index.asset.php';
+		$style_url       = plugin_dir_url( __DIR__ ) . 'build/admin/index.css';
+		$style_index_url = plugin_dir_url( __DIR__ ) . 'build/admin/style-index.css';
+
+		if ( ! $this->asset_exists( $asset_path ) ) {
 			return;
 		}
 
-		$assets = include plugin_dir_path( __DIR__ ) . 'build/admin/index.asset.php';
+		$assets = include $asset_path;
+		wp_enqueue_style( $this->plugin_name . '-admin', $style_url, array(), $assets['version'] );
+		wp_enqueue_style( $this->plugin_name . '-admin-style-index', $style_index_url, array(), $assets['version'] );
+	}
 
-		/**
-		 * Enqueue CSS modules for the admin page
-		 */
-		wp_enqueue_style(
-			$this->plugin_name . '-admin-index',
-			plugin_dir_url( __DIR__ ) . 'build/admin/index.css',
-			array(),
-			$assets['version'],
-		);
+	/**
+	 * Enqueue the admin script
+	 *
+	 * @since    0.1.3
+	 * @return void
+	 */
+	public function enqueue_script(): void {
+		$asset_path = plugin_dir_path( __DIR__ ) . 'build/admin/index.asset.php';
+		$script_url = plugin_dir_url( __DIR__ ) . 'build/admin/index.js';
 
-		/**
-		 * Enqueue custom styles
-		 */
-		wp_enqueue_style(
-			$this->plugin_name . '-admin-style-index',
-			plugin_dir_url( __DIR__ ) . 'build/admin/style-index.css',
-			array(),
-			$assets['version'],
-		);
+		if ( ! $this->asset_exists( $asset_path ) ) {
+			return;
+		}
 
-		/**
-		 * Enqueue JS for the admin page
-		 */
-		wp_enqueue_script(
-			$this->plugin_name . '-admin-index',
-			plugin_dir_url( __DIR__ ) . 'build/admin/index.js',
-			$assets['dependencies'],
-			$assets['version'],
-			true
-		);
+		$assets = include $asset_path;
+		wp_enqueue_script( $this->plugin_name . '-admin', $script_url, $assets['dependencies'], $assets['version'], true );
+	}
 
-		/**
-		 * Localize the script with the data needed for the REST API
-		 */
+	/**
+	 * Localize the script with the data needed for the admin frontend
+	 *
+	 * @since    0.1.3
+	 * @return void
+	 */
+	public function localize_script(): void {
 		wp_localize_script(
-			$this->plugin_name . '-admin-index',
-			'gutenbergNativeAiSettings',
+			$this->plugin_name . '-admin',
+			self::LOCALIZED_OBJECT_NAME,
 			array(
 				'nonce' => wp_create_nonce( 'wp_rest' ), // Nonce for REST API authentication (must be used in all REST API requests)
 			)
@@ -120,22 +198,19 @@ class Admin {
 	}
 
 	/**
-	 * Setup theme options
+	 * Run the admin scripts and styles
 	 *
+	 * @since    0.1.3
+	 * @param string $hook The current admin page
 	 * @return void
 	 */
-	public function add_menu(): void {
-		/**
-		 * Create initial menu page
-		 */
-		add_menu_page(
-			__( 'Gutenberg Native AI Options', 'gutenberg-native-ai' ), // Page Title
-			__( 'Gutengerg AI', 'gutenberg-native-ai' ), // Menu Title
-			'manage_options', // Capability
-			$this->plugin_name,  // Menu Slug
-			array( $this, 'get_html' ), // Callback function
-			'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTUyIDE3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM6c2VyaWY9Imh0dHA6Ly93d3cuc2VyaWYuY29tLyIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoyOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjk1NjIyNywwLDAsMC45NTYyMjcsLTgxMi42NDgsLTI2MjguNzgpIj4KICAgICAgICA8cGF0aCBmaWxsPSJibGFjayIgZD0iTTkyOC44NzQsMjc0OS4xMUwxMDA3LjksMjc5NC43NEwxMDA3LjksMjg4NS45OUw5MjguODc0LDI5MzEuNjFMODQ5Ljg0OCwyODg1Ljk5TDg0OS44NDgsMjc5NC43NEw5MjguODc0LDI3NDkuMTFaTTk4OS4wMTEsMjg0OC4xM0w5ODkuMDExLDI4MzIuNTlMOTUyLjEzNSwyODAwLjk5TDk1Mi4xMzUsMjgxOC43M0w5NzUuODYzLDI4MzkuMzdMOTc1Ljg2MywyODQxLjM2TDk1Mi4xMzUsMjg2MS45OUw5NTIuMTM1LDI4NzkuNzNMOTg5LjAxMSwyODQ4LjEzWk04NjguNzM3LDI4MzIuNTlMODY4LjczNywyODQ4LjEzTDkwNS42MTMsMjg3OS43M0w5MDUuNjEzLDI4NjEuOTlMODgxLjg4NSwyODQxLjM2TDg4MS44ODUsMjgzOS4zN0w5MDUuNjEzLDI4MTguNzNMOTA1LjYxMywyODAwLjk5TDg2OC43MzcsMjgzMi41OVpNOTI0LjM4MywyODk5LjMzTDk1MS4xMjQsMjc4MS4zOUw5MzQuMjIxLDI3ODEuMzlMOTA3LjQ4LDI4OTkuMzNMOTI0LjM4MywyODk5LjMzWiIgLz4KICAgIDwvZz4KPC9zdmc+Cg==', // Icon
-			50
-		);
+	public function enqueue_admin_scripts_and_styles( string $hook ): void {
+		if ( ! $this->is_admin_page( $hook ) ) {
+			return;
+		}
+
+		$this->enqueue_styles();
+		$this->enqueue_script();
+		$this->localize_script();
 	}
 }

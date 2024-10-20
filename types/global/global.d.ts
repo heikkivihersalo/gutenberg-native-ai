@@ -1,11 +1,11 @@
 export {};
 
 declare global {
-	type gutenbergNativeAiSettings = {
+	type LocalizedScript = {
 		nonce: string;
 	};
 
 	interface Window {
-		gutenbergNativeAiSettings?: gutenbergNativeAiSettings;
+		GUTENBERG_NATIVE_AI?: LocalizedScript;
 	}
 }

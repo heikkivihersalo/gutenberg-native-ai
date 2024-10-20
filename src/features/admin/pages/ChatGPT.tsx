@@ -19,7 +19,7 @@ import type { ChatGPTAdminRequestData } from '@api';
 const ChatGPT = (): JSX.Element | null => {
 	const { formData, handleChange, handleSave } = useAdminForm({
 		path: 'gutenberg-native-ai/v1/settings',
-		nonce: window.gutenbergNativeAiSettings?.nonce,
+		nonce: window.GUTENBERG_NATIVE_AI?.nonce,
 	});
 
 	/**

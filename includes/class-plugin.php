@@ -80,6 +80,7 @@ class Plugin {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
+		$this->define_options_page_hooks();
 		$this->add_api_routes();
 	}
 
@@ -163,14 +164,24 @@ class Plugin {
 	 * @access   private
 	 */
 	private function define_admin_hooks() {
-		$plugin_admin   = new Admin( $this->get_plugin_name(), $this->get_version() );
 		$plugin_scripts = new Scripts( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_scripts, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_scripts, 'enqueue_scripts' );
+	}
 
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+	/**
+	 * Register all of the hooks related to the options area functionality
+	 * of the plugin.
+	 *
+	 * @since    0.1.3
+	 * @access   private
+	 */
+	private function define_options_page_hooks() {
+		$admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'admin_menu', $admin, 'add_plugin_options' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_admin_scripts_and_styles' );
 	}
 
 	/**
