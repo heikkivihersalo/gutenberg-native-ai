@@ -43,7 +43,7 @@ class Admin {
 	 * @access   protected
 	 * @var      string    LOCALIZED_OBJECT_NAME    The name of the localized object
 	 */
-	protected const LOCALIZED_OBJECT_NAME = 'gutenbergNativeAiSettings';
+	protected const LOCALIZED_OBJECT_NAME = 'GUTENBERG_NATIVE_AI';
 
 	/**
 	 * The admin page name
