@@ -3,6 +3,7 @@ import { ApiPath } from './api';
 type ChatGPTAdminRequestData = {
 	model: ChatGPTAdminApiResponse['data']['model'];
 	api_key: ChatGPTAdminApiResponse['data']['api_key'];
+	tone_of_voice: string;
 };
 
 type AdminRequestData = ChatGPTAdminRequestData;
@@ -14,6 +15,7 @@ type ChatGPTAdminApiResponse = {
 	data: {
 		model: string;
 		api_key: string;
+		tone_of_voice: string;
 	};
 };
 
