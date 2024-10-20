@@ -3,22 +3,10 @@
  */
 import styles from './Input.module.css';
 
-type InputType = 'text' | 'textarea' | 'number' | 'email';
-
-type InputProps = {
-	type: InputType;
-	label: string;
-	name: string;
-	value: string | number | readonly string[] | undefined;
-	placeholder?: string;
-	onChange?: React.ChangeEventHandler<HTMLInputElement>;
-	disabled?: boolean;
-};
-
 /**
  * Component for number input
  * @param {Object} props - Component props
- * @param {InputType} props.type - Type of the input
+ * @param {FormInputType} props.type - Type of the input
  * @param {string} props.label - Label for the input
  * @param {string} props.name - Name for the input
  * @param {string} props.value - Value for the input
@@ -35,7 +23,7 @@ const Input = ({
 	placeholder = '',
 	onChange = () => {},
 	disabled = false,
-}: InputProps): JSX.Element => {
+}: FormInputProps): JSX.Element => {
 	return (
 		<div className={styles.input}>
 			<label htmlFor={name}>{label}</label>
