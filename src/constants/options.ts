@@ -3,48 +3,51 @@ import { __ } from '@wordpress/i18n';
 export const TONE_OF_VOICE = [
 	{ value: 'none', label: __('None', 'gutenberg-native-ai') },
 	{
-		value: 'friendly',
+		value: 'friendly-professional',
 		label: __('Friendly and Professional', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'authoritative',
+		value: 'authoritative-informative',
 		label: __('Authoritative and Informative', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'urgent',
+		value: 'urgent-persuasive',
 		label: __('Urgent and Persuasive', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'casual',
+		value: 'casual-conversational',
 		label: __('Casual and Conversational', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'trustworthy',
+		value: 'professional-trustworthy',
 		label: __('Professional and Trustworthy', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'humorous',
+		value: 'humorous-informal',
 		label: __('Humorous and Informal', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'straightforward',
+		value: 'professional-straightforward',
 		label: __('Professional and Straightforward', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'empathetic',
+		value: 'serious-empathetic',
 		label: __('Serious and Empathetic', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'enthusiastic',
+		value: 'positive-enthusiastic',
 		label: __('Positive and Enthusiastic', 'gutenberg-native-ai'),
 	},
 	{
-		value: 'expert',
+		value: 'authoritative-professional',
 		label: __('Authoritative and Professional', 'gutenberg-native-ai'),
 	},
-	{ value: 'funny', label: __('Casual and Funny', 'gutenberg-native-ai') },
 	{
-		value: 'professional',
+		value: 'casual-funny',
+		label: __('Casual and Funny', 'gutenberg-native-ai'),
+	},
+	{
+		value: 'authoritative-expert',
 		label: __('Authoritative and Expert', 'gutenberg-native-ai'),
 	},
 ];
