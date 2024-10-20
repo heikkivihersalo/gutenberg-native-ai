@@ -37,8 +37,9 @@ final class Utils {
 		$settings = get_option(
 			'gutenberg_native_ai',
 			array(
-				'model'   => 'gpt-4o-mini',
-				'api_key' => '',
+				'model'         => 'gpt-4o-mini',
+				'api_key'       => '',
+				'tone_of_voice' => 'none',
 			)
 		);
 
@@ -46,8 +47,9 @@ final class Utils {
 		$decrypted_api_key = $encryptor->decrypt( $settings['api_key'] );
 
 		return array(
-			'model'   => $settings['model'],
-			'api_key' => $decrypted_api_key,
+			'model'         => $settings['model'],
+			'api_key'       => $decrypted_api_key,
+			'tone_of_voice' => $settings['tone_of_voice'],
 		);
 	}
 
@@ -75,8 +77,9 @@ final class Utils {
 		$update = update_option(
 			'gutenberg_native_ai',
 			array(
-				'model'   => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
-				'api_key' => $encrypted_api_key,
+				'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+				'api_key'       => $encrypted_api_key,
+				'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 			),
 			true
 		);
@@ -86,8 +89,9 @@ final class Utils {
 		}
 
 		return array(
-			'model'   => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
-			'api_key' => $body['api_key'] ?? $current['api_key'] ?? '',
+			'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+			'api_key'       => $body['api_key'] ?? $current['api_key'] ?? '',
+			'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 		);
 	}
 
