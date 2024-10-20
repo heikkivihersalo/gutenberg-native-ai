@@ -98,7 +98,13 @@ class Admin {
 	 */
 	public function asset_exists( string $path ): bool {
 		if ( ! file_exists( $path ) ) :
-			$notice = new Notice( __( 'Plugin admin assets in a path "' . $path . '" are missing. Run `yarn` and/or `yarn build` to generate them.', 'gutenberg-native-ai' ) );
+			$message = sprintf(
+				/* translators: The path to the missing plugin admin asset file */
+				__( 'Plugin admin assets in a path "%s" are missing. Run `yarn` and/or `yarn build` to generate them.', 'gutenberg-native-ai' ),
+				$path
+			);
+
+			$notice = new Notice( $message );
 			$notice->display();
 
 			return false;
