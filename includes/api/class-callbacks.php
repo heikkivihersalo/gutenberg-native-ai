@@ -17,13 +17,19 @@ namespace Kotisivu\Gutenberg_Native_AI\Api;
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
-class Callbacks {
+final class Callbacks {
+	/**
+	 * This utility class should never be instantiated.
+	 */
+	private function __construct() {
+	}
+
 	/**
 	 * Get ChatGPT settings
 	 *
 	 * @return \WP_REST_Response|\WP_Error Response object
 	 */
-	public function get_settings(): \WP_REST_Response|\WP_Error {
+	public static function get_settings(): \WP_REST_Response|\WP_Error {
 		try {
 			$result = Utils::get_chatgpt_settings();
 		} catch ( \Exception $e ) {
@@ -48,7 +54,7 @@ class Callbacks {
 	 * @return \WP_REST_Response|\WP_Error Response object
 	 * @throws \Exception If user does not have sufficient permissions.
 	 */
-	public function update_settings( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
+	public static function update_settings( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
 			$result = Utils::update_chatgpt_settings( $request );
 		} catch ( \Exception $e ) {
@@ -73,7 +79,7 @@ class Callbacks {
 	 * @return \WP_REST_Response|\WP_Error Response object
 	 * @throws \Exception If user does not have sufficient permissions.
 	 */
-	public function generate_text( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
+	public static function generate_text( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
 			$result = Utils::get_open_ai_text_content( $request );
 		} catch ( \Exception $e ) {
@@ -90,7 +96,7 @@ class Callbacks {
 	 * @return \WP_REST_Response|\WP_Error Response object
 	 * @throws \Exception If user does not have sufficient permissions.
 	 */
-	public function generate_image( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
+	public static function generate_image( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
 			$result = Utils::get_open_ai_image_content( $request );
 		} catch ( \Exception $e ) {
@@ -107,7 +113,7 @@ class Callbacks {
 	 * @return \WP_REST_Response|\WP_Error Response object
 	 * @throws \Exception If user does not have sufficient permissions.
 	 */
-	public function save_image_to_media_library( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
+	public static function save_image_to_media_library( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
 		try {
 			$result = Utils::save_image_to_media_library( $request );
 		} catch ( \Exception $e ) {
