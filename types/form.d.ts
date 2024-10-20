@@ -21,7 +21,7 @@ type FormToggleProps = {
 type FormSelectProps = {
 	label: string;
 	name: string;
-	value: string;
+	value: string | undefined;
 	options: Array<{ value: string; label: string }>;
 	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
