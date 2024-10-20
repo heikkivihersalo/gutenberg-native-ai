@@ -22,7 +22,12 @@ const Select = ({
 	return (
 		<div className={styles.select}>
 			<label htmlFor={name}>{label}</label>
-			<select id={name} name={name} value={value} onChange={onChange}>
+			<select
+				id={name}
+				name={name}
+				value={value || undefined}
+				onChange={onChange}
+			>
 				{options.map((option) => (
 					<option key={option.value} value={option.value}>
 						{option.label}
