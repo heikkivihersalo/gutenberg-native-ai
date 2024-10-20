@@ -9,8 +9,9 @@ import { __, sprintf } from '@wordpress/i18n';
 import { useAdminForm } from '@hooks';
 import { OptionBody, OptionGroup } from '../components/containers';
 import { Form, FormHead, FormBody, FormButton } from '../components/form';
-import { Input } from '../components/inputs';
-import type { ChatGPTAdminRequestData } from '@api';
+import { Input, SelectTone } from '../components/inputs';
+
+import type { ChatGPTAdminRequestData } from 'types/admin';
 
 /**
  * Analytics Settings Page
@@ -68,6 +69,7 @@ const ChatGPT = (): JSX.Element | null => {
 							}
 							onChange={handleChange}
 						/>
+						<SelectTone />
 					</FormBody>
 					<FormButton />
 				</Form>
