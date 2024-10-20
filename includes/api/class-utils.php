@@ -71,7 +71,7 @@ final class Utils {
 			return $current;
 		}
 
-		$encryptor         = new \Kotisivu\Gutenberg_Native_AI\Data_Encryption();
+		$encryptor         = new Encryption();
 		$encrypted_api_key = $encryptor->encrypt( $body['api_key'] ?? $current['api_key'] ?? '' );
 
 		$update = update_option(
