@@ -106,11 +106,15 @@ final class Utils {
 	private static function get_system_instructions_for_text_prompts( string $tone_of_voice ): string {
 		/**
 		 * Set base instructions for AI text prompts
+		 * To get the result that can be converted to Gutenberg blocks, we must use markdown format and return only the result.
+		 * Otherwise, the AI might return additional content like the prompt itself or other unnecessary information.
 		 */
 		$base_instructions = 'You are a helpful assistant that returns text in markdown format. Return only the result.';
 
 		/**
 		 * Set tone of voice instructions
+		 * If the tone of voice is not set, return the base instructions.
+		 * Otherwise, add the tone of voice to the base instructions.
 		 */
 		switch ( $tone_of_voice ) {
 			case 'none':
