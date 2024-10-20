@@ -9,7 +9,9 @@ import { __, sprintf } from '@wordpress/i18n';
 import { useAdminForm } from '@hooks';
 import { OptionBody, OptionGroup } from '../components/containers';
 import { Form, FormHead, FormBody, FormButton } from '../components/form';
-import { Input, SelectTone } from '../components/inputs';
+import { Input, Select } from '../components/inputs';
+
+import { TONE_OF_VOICE } from '@constants/options';
 
 import type { ChatGPTAdminRequestData } from 'types/admin';
 
@@ -67,9 +69,22 @@ const ChatGPT = (): JSX.Element | null => {
 							value={
 								(formData as ChatGPTAdminRequestData).api_key
 							}
-							onChange={handleChange}
+							onChange={
+								handleChange as React.ChangeEventHandler<HTMLInputElement>
+							}
 						/>
-						<SelectTone />
+						<Select
+							label={__('Tone of Voice', 'gutenberg-native-ai')}
+							name="tone_of_voice"
+							value={
+								(formData as ChatGPTAdminRequestData)
+									.tone_of_voice
+							}
+							options={TONE_OF_VOICE}
+							onChange={
+								handleChange as React.ChangeEventHandler<HTMLSelectElement>
+							}
+						/>
 					</FormBody>
 					<FormButton />
 				</Form>
