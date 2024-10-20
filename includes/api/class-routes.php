@@ -81,8 +81,6 @@ class Routes {
 	 * @return void
 	 */
 	public function register_endpoints(): void {
-		$callback = new Callbacks();
-
 		/**
 		 * Route for getting ChatGPT settings
 		 *
@@ -93,7 +91,7 @@ class Routes {
 			'/settings',
 			array(
 				'methods'             => \WP_REST_Server::READABLE, // Alias for GET transport method.
-				'callback'            => array( $callback, 'get_settings' ),
+				'callback'            => array( Callbacks::class, 'get_settings' ),
 				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
@@ -108,7 +106,7 @@ class Routes {
 			'/settings',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for POST transport method.
-				'callback'            => array( $callback, 'update_settings' ),
+				'callback'            => array( Callbacks::class, 'update_settings' ),
 				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
@@ -123,7 +121,7 @@ class Routes {
 			'/text/generate',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
-				'callback'            => array( $callback, 'generate_text' ),
+				'callback'            => array( Callbacks::class, 'generate_text' ),
 				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
@@ -138,7 +136,7 @@ class Routes {
 			'/image/generate',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
-				'callback'            => array( $callback, 'generate_image' ),
+				'callback'            => array( Callbacks::class, 'generate_image' ),
 				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
@@ -153,7 +151,7 @@ class Routes {
 			'/image/save',
 			array(
 				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
-				'callback'            => array( $callback, 'save_image_to_media_library' ),
+				'callback'            => array( Callbacks::class, 'save_image_to_media_library' ),
 				'permission_callback' => Permissions::ADMIN->get_callback(),
 			)
 		);
