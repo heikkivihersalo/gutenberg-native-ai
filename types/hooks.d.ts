@@ -12,7 +12,7 @@ declare module '@hooks' {
 	export const useAdminForm: (props: AdminFormProps) => {
 		formData: AdminFormData;
 		setFormData: (data: AdminFormData) => void;
-		handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+		handleChange: FormOnChange;
 		handleSave: ({ data }: { data: AdminFormData }) => void;
 	};
 }

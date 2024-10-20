@@ -17,3 +17,20 @@ type FormToggleProps = {
 	onChange: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 	hideLabel?: boolean;
 };
+
+type FormSelectProps = {
+	label: string;
+	name: string;
+	value: string;
+	options: Array<{ value: string; label: string }>;
+	onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+type FormOnChangeEvent = React.ChangeEvent<
+	HTMLInputElement | HTMLSelectElement
+>;
+
+type FormOnChange =
+	| FormInputProps['onChange']
+	| FormSelectProps['onChange']
+	| FormToggleProps['onChange'];
