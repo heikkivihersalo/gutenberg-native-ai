@@ -8,7 +8,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import ModelNavItem from './ModelNavItem';
-import type { ModalSettings } from 'types/modal';
+import type { ModalMode } from 'types/modal';
 
 import style from '../index.module.css';
 
@@ -17,13 +17,13 @@ import style from '../index.module.css';
  * @return {JSX.Element} Model navigation component
  */
 const ModelNav = () => {
-	const { settings } = useSelect((select: WPAny) => {
+	const { mode } = useSelect((select: WPAny) => {
 		return {
-			settings: select('theme/ai').getSettings() as ModalSettings,
+			mode: select('theme/ai').getMode() as ModalMode,
 		};
 	}, []);
 
-	const { setSettings } = useDispatch('theme/ai');
+	const { setMode } = useDispatch('theme/ai');
 
 	return (
 		<div className={style.navContainer}>
@@ -48,10 +48,8 @@ const ModelNav = () => {
 							/>
 						</svg>
 					}
-					isActive={settings.model === 'text'}
-					selectCallback={() =>
-						setSettings({ ...settings, model: 'text' })
-					}
+					isActive={mode === 'text'}
+					selectCallback={() => setMode('text')}
 				/>
 				<ModelNavItem
 					label={__('Generate Images', 'gutenberg-native-ai')}
@@ -70,10 +68,8 @@ const ModelNav = () => {
 							/>
 						</svg>
 					}
-					isActive={settings.model === 'image'}
-					selectCallback={() =>
-						setSettings({ ...settings, model: 'image' })
-					}
+					isActive={mode === 'image'}
+					selectCallback={() => setMode('image')}
 				/>
 			</ul>
 		</div>
