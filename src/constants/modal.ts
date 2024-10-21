@@ -5,6 +5,11 @@ export const MODAL_STATUS = {
 	ERROR: 'error',
 };
 
+export const MODAL_MODE = {
+	TEXT: 'text',
+	IMAGE: 'image',
+};
+
 export const ALLOWED_TEXT_BLOCKS = [
 	'core/paragraph',
 	'core/heading',
