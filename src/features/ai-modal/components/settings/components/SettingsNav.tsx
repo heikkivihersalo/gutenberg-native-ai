@@ -27,8 +27,6 @@ const SettingsNav = () => {
 
 	const { setSettings } = useDispatch('theme/ai');
 
-	console.log(settings);
-
 	return (
 		<div className={style.navContainer}>
 			<div className={style.navLabel}>
@@ -54,7 +52,9 @@ const SettingsNav = () => {
 					subMenuValue={settings.tone_of_voice}
 					subMenuLabel={__('Tone of Voice', 'gutenberg-native-ai')}
 					subMenuOptions={TONE_OF_VOICE}
-					subMenuCallback={(value) => console.log(value)}
+					subMenuCallback={(value) => {
+						setSettings({ ...settings, tone_of_voice: value });
+					}}
 				/>
 			</ul>
 		</div>
