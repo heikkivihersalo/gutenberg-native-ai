@@ -23,6 +23,12 @@ const selectors = {
 		return state.selection;
 	},
 	/**
+	 * Get current mode from store state
+	 */
+	getMode(state: Store): string {
+		return state.mode;
+	},
+	/**
 	 * Get current settings from store state
 	 * @param {Store} state Store state
 	 */
