@@ -6,6 +6,7 @@ import { ShortcutProvider, useShortcut } from '@wordpress/keyboard-shortcuts';
 import { useState, useCallback } from '@wordpress/element';
 import { Popover } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
+
 /**
  * Internal dependencies
  */
