@@ -1,9 +1,14 @@
 /**
  * Internal dependencies
  */
-import { MODAL_STATUS } from '@constants/modal';
+import { MODAL_STATUS, MODAL_MODE } from '@constants/modal';
 
-import type { ModalStatus, ModalSelection, ModalSettings } from 'types/modal';
+import type {
+	ModalMode,
+	ModalStatus,
+	ModalSelection,
+	ModalSettings,
+} from 'types/modal';
 
 import type {
 	SetStatusAction,
@@ -24,7 +29,12 @@ const initialSelection: ModalSelection = {
 	end: 0,
 };
 
-const initialSettings: ModalSettings = { model: 'text' };
+const initialSettings: ModalSettings = {
+	model: 'text',
+	tone_of_voice: 'none',
+};
+
+const initialMode: ModalMode = MODAL_MODE.TEXT as ModalMode;
 
 /**
  * Status reducer
@@ -61,6 +71,23 @@ export function selection(
 		...state,
 		...action.payload,
 	};
+}
+
+/**
+ * Mode reducer
+ * @param {ReducerState} state
+ * @param {SetModeAction} action
+ * @return {ReducerState} New state
+ */
+export function mode(
+	state: ModalMode = initialMode,
+	action: SetStatusAction
+): ReducerState {
+	if (action.type !== 'SET_MODE') {
+		return state;
+	}
+
+	return action.payload;
 }
 
 /**
