@@ -6,7 +6,7 @@ import { addFilter } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import BlockEditControl from './components/BlockEditControl';
+import BlockEditControl from './features/BlockEditControl';
 
 declare const wp: WPAny;
 

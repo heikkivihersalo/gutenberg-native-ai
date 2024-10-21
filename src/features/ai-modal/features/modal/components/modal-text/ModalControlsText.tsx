@@ -1,3 +1,6 @@
+/**
+ * WordPress dependencies
+ */
 import { __ } from '@wordpress/i18n';
 import { useSelect, useDispatch } from '@wordpress/data';
 
@@ -5,25 +8,31 @@ import { useSelect, useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import { useChatGPT } from '@hooks';
+
 import Form from '../form/Form';
-import PromptControl from '../form/PromptControl';
-import WarningText from '../form/WarningText';
+import FormInput from '../form/FormInput';
+import FormSubmitButton from '../form/FormSubmitButton';
+import CloseButton from '../CloseButton';
+import WarningText from '../WarningText';
+import Settings from '../../../settings';
 
 import {
 	addBlocksToEditor,
 	parseMarkdownToBlocks,
 	replateSelectedText,
-} from '../../utils';
+} from '../../../../utils';
 
 import { MODAL_STATUS } from '@constants/modal';
 
 import type { ModalStatus, ModalSelection } from 'types/modal';
 
+import styles from '../../index.module.css';
+
 /**
  * TextPromptModal component
  * @return {JSX.Element} Popover component
  */
-const TextPromptModal = (): JSX.Element | null => {
+const ModalControlsText = (): JSX.Element | null => {
 	const { status, selection } = useSelect((select: WPAny) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
@@ -34,12 +43,15 @@ const TextPromptModal = (): JSX.Element | null => {
 	const { setStatus, setSelection } = useDispatch('theme/ai');
 	const { getText } = useChatGPT();
 
-	const modalOpen =
-		status === MODAL_STATUS.VISIBLE || status === MODAL_STATUS.LOADING;
-
-	if (!selection || !modalOpen) {
-		return null;
-	}
+	const handleCLose = () => {
+		setStatus(MODAL_STATUS.INITIAL);
+		setSelection({
+			block: null,
+			text: '',
+			start: 0,
+			end: 0,
+		});
+	};
 
 	/**
 	 * Handle generate content
@@ -95,27 +107,25 @@ const TextPromptModal = (): JSX.Element | null => {
 			}
 		}
 
-		setStatus(MODAL_STATUS.INITIAL);
-		setSelection({
-			block: null,
-			text: '',
-			start: 0,
-			end: 0,
-		});
+		handleCLose();
 	};
 
 	return (
 		<Form onSubmit={generateContent}>
-			<PromptControl
-				status={status}
-				placeholder={__(
-					'What do you want to write about?',
-					'gutenberg-native-ai'
-				)}
-			/>
+			<div className={styles.controlContainer}>
+				<FormInput
+					placeholder={__(
+						'What do you want to write about?',
+						'gutenberg-native-ai'
+					)}
+				/>
+				<FormSubmitButton status={status} />
+				<CloseButton closeCallback={handleCLose} />
+				<Settings />
+			</div>
 			<WarningText />
 		</Form>
 	);
 };
 
-export default TextPromptModal;
+export default ModalControlsText;

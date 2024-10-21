@@ -4,7 +4,6 @@
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { ShortcutProvider, useShortcut } from '@wordpress/keyboard-shortcuts';
 import { useState, useCallback } from '@wordpress/element';
-import { Popover } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
@@ -12,8 +11,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
  */
 import { MODAL_STATUS, ALLOWED_TEXT_BLOCKS } from '@constants/modal';
 
-import TextPromptModal from './modals/TextPromptModal';
-import ImagePromptModal from './modals/ImagePromptModal';
+import Modal from './modal';
 
 import {
 	getCurrentSelection,
@@ -89,10 +87,7 @@ const BlockEditControl = createHigherOrderComponent(function (
 		return (
 			<ShortcutProvider>
 				<BlockEdit {...props} />
-				<Popover placement="bottom" anchor={anchor}>
-					{mode === 'text' && <TextPromptModal />}
-					{mode === 'image' && <ImagePromptModal />}
-				</Popover>
+				<Modal anchor={anchor} mode={mode} />
 			</ShortcutProvider>
 		);
 	};
