@@ -172,7 +172,7 @@ final class Utils {
 	public static function get_open_ai_text_content( \WP_REST_Request $request ): array {
 		$body          = json_decode( $request->get_body(), true );
 		$api           = self::get_chatgpt_settings();
-		$tone_of_voice = $api['tone_of_voice'] ?? 'none';
+		$tone_of_voice = $body['tone_of_voice'] ?? 'none';
 		$data          = array(
 			'model'    => $api['model'] ?? 'gpt-4o-mini',
 			'messages' => array(
