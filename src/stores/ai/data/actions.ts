@@ -2,10 +2,17 @@
  * Internal dependencies
  */
 import { ACTIONS } from '@constants/actions';
-import { ModalStatus, ModalSelection, ModalSettings } from 'types/modal';
+import {
+	ModalMode,
+	ModalStatus,
+	ModalSelection,
+	ModalSettings,
+} from 'types/modal';
 import {
 	SetStatusAction,
 	SetSelectionAction,
+	SetModeAction,
+	GetSettingsAction,
 	SetSettingsAction,
 } from 'types/store';
 
@@ -34,6 +41,28 @@ const actions = {
 		return {
 			type: ACTIONS.SET_SELECTION,
 			payload: selection,
+		};
+	},
+	/**
+	 * Set action for the store.
+	 * @param {Mode} mode
+	 * @return {SetModeAction} Action object.
+	 */
+	setMode(mode: ModalMode): SetModeAction {
+		return {
+			type: ACTIONS.SET_MODE,
+			payload: mode,
+		};
+	},
+	/**
+	 * Get action for the settings.
+	 * @param {string} path
+	 * @return {GetSettingsAction} Action object.
+	 */
+	getSettings(path: string): GetSettingsAction {
+		return {
+			type: ACTIONS.GET_SETTINGS,
+			payload: path,
 		};
 	},
 	/**

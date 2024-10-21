@@ -6,11 +6,11 @@ import { Popover } from '@wordpress/components';
 /**
  * Internal dependencies
  */
-import ModelNav from './ModelNav';
-import GeneralSettingsNav from './GeneralSettingsNav';
-import QuickCommandsNav from './QuickCommandsNav';
+import ModelNav from './components/ModelNav';
+import SettingsNav from './components/SettingsNav';
+import QuickCommandsNav from './components/QuickCommandsNav';
 
-import style from './Settings.module.css';
+import style from './index.module.css';
 
 /**
  * Settings component
@@ -35,7 +35,7 @@ const Settings = ({
 			<div className={style.settingsContainer}>
 				<ModelNav />
 				<QuickCommandsNav />
-				<GeneralSettingsNav />
+				<SettingsNav />
 			</div>
 		</Popover>
 	);

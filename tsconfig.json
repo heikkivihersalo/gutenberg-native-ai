@@ -1,5 +1,7 @@
 {
 	"compilerOptions": {
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
 		"baseUrl": "./",
 		"outDir": "./build/",
 		"target": "es2021",

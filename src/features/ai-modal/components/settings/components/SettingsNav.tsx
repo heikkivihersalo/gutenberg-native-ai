@@ -2,26 +2,38 @@
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { useSelect, useDispatch } from '@wordpress/data';
 
 /**
  * Internal dependencies
  */
-import GeneralSettingsNavItem from './GeneralSettingsNavItem';
+import SettingsNavItem from './SettingsNavItem';
+import { TONE_OF_VOICE } from '@constants/options';
 
-import style from './Settings.module.css';
+import type { ModalSettings } from 'types/modal';
+
+import style from '../index.module.css';
 
 /**
  * General settings navigation component
  * @return {JSX.Element} General settings navigation component
  */
-const GeneralSettingsNav = () => {
+const SettingsNav = () => {
+	const { settings } = useSelect((select: WPAny) => {
+		return {
+			settings: select('theme/ai').getSettings() as ModalSettings,
+		};
+	}, []);
+
+	const { setSettings } = useDispatch('theme/ai');
+
 	return (
 		<div className={style.navContainer}>
 			<div className={style.navLabel}>
 				{__('Settings', 'gutenberg-native-ai')}
 			</div>
 			<ul className={style.navList}>
-				<GeneralSettingsNavItem
+				<SettingsNavItem
 					label={__('Change Tone', 'gutenberg-native-ai')}
 					icon={
 						<svg
@@ -37,12 +49,16 @@ const GeneralSettingsNav = () => {
 							/>
 						</svg>
 					}
-					selectCallback={() => {}}
-					hasSubMenu
+					subMenuValue={settings.tone_of_voice}
+					subMenuLabel={__('Tone of Voice', 'gutenberg-native-ai')}
+					subMenuOptions={TONE_OF_VOICE}
+					subMenuCallback={(value) => {
+						setSettings({ ...settings, tone_of_voice: value });
+					}}
 				/>
 			</ul>
 		</div>
 	);
 };
 
-export default GeneralSettingsNav;
+export default SettingsNav;

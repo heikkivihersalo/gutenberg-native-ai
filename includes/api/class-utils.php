@@ -37,8 +37,9 @@ final class Utils {
 		$settings = get_option(
 			'gutenberg_native_ai',
 			array(
-				'model'   => 'gpt-4o-mini',
-				'api_key' => '',
+				'model'         => 'gpt-4o-mini',
+				'api_key'       => '',
+				'tone_of_voice' => 'none',
 			)
 		);
 
@@ -46,8 +47,9 @@ final class Utils {
 		$decrypted_api_key = $encryptor->decrypt( $settings['api_key'] );
 
 		return array(
-			'model'   => $settings['model'],
-			'api_key' => $decrypted_api_key,
+			'model'         => $settings['model'],
+			'api_key'       => $decrypted_api_key,
+			'tone_of_voice' => $settings['tone_of_voice'],
 		);
 	}
 
@@ -69,14 +71,15 @@ final class Utils {
 			return $current;
 		}
 
-		$encryptor         = new \Kotisivu\Gutenberg_Native_AI\Data_Encryption();
+		$encryptor         = new Encryption();
 		$encrypted_api_key = $encryptor->encrypt( $body['api_key'] ?? $current['api_key'] ?? '' );
 
 		$update = update_option(
 			'gutenberg_native_ai',
 			array(
-				'model'   => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
-				'api_key' => $encrypted_api_key,
+				'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+				'api_key'       => $encrypted_api_key,
+				'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 			),
 			true
 		);
@@ -86,9 +89,75 @@ final class Utils {
 		}
 
 		return array(
-			'model'   => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
-			'api_key' => $body['api_key'] ?? $current['api_key'] ?? '',
+			'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+			'api_key'       => $body['api_key'] ?? $current['api_key'] ?? '',
+			'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 		);
+	}
+
+	/**
+	 * Get system instructions for text prompts
+	 *
+	 * @since 0.1.3
+	 * @access private
+	 * @param string $tone_of_voice The tone of voice.
+	 * @return string
+	 */
+	private static function get_system_instructions_for_text_prompts( string $tone_of_voice ): string {
+		/**
+		 * Set base instructions for AI text prompts
+		 * To get the result that can be converted to Gutenberg blocks, we must use markdown format and return only the result.
+		 * Otherwise, the AI might return additional content like the prompt itself or other unnecessary information.
+		 */
+		$base_instructions = 'You are a helpful assistant that returns text in markdown format. Return only the result.';
+
+		/**
+		 * Set tone of voice instructions
+		 * If the tone of voice is not set, return the base instructions.
+		 * Otherwise, add the tone of voice to the base instructions.
+		 */
+		switch ( $tone_of_voice ) {
+			case 'none':
+				return $base_instructions;
+
+			case 'friendly-professional':
+				return $base_instructions . ' You are expected to use a friendly and professional tone of voice.';
+
+			case 'authoritative-informative':
+				return $base_instructions . ' You are expected to use an authoritative and informative tone of voice.';
+
+			case 'urgent-persuasive':
+				return $base_instructions . ' You are expected to use an urgent and persuasive tone of voice.';
+
+			case 'casual-conversational':
+				return $base_instructions . ' You are expected to use a casual and conversational tone of voice.';
+
+			case 'professional-trustworthy':
+				return $base_instructions . ' You are expected to use a professional and trustworthy tone of voice.';
+
+			case 'humorous-informal':
+				return $base_instructions . ' You are expected to use a humorous and informal tone of voice.';
+
+			case 'professional-straightforward':
+				return $base_instructions . ' You are expected to use a professional and straightforward tone of voice.';
+
+			case 'serious-empathetic':
+				return $base_instructions . ' You are expected to use a serious and empathetic tone of voice.';
+
+			case 'positive-enthusiastic':
+				return $base_instructions . ' You are expected to use a positive and enthusiastic tone of voice.';
+
+			case 'authoritative-professional':
+				return $base_instructions . ' You are expected to use an authoritative and professional tone of voice.';
+
+			case 'casual-funny':
+				return $base_instructions . ' You are expected to use a casual and funny tone of voice.';
+
+			case 'authoritative-expert':
+				return $base_instructions . ' You are expected to use an authoritative and expert tone of voice.';
+			default:
+				return $base_instructions;
+		}
 	}
 
 	/**
@@ -101,14 +170,15 @@ final class Utils {
 	 * @throws \Exception If failed to update contact information.
 	 */
 	public static function get_open_ai_text_content( \WP_REST_Request $request ): array {
-		$body = json_decode( $request->get_body(), true );
-		$api  = self::get_chatgpt_settings();
-		$data = array(
+		$body          = json_decode( $request->get_body(), true );
+		$api           = self::get_chatgpt_settings();
+		$tone_of_voice = $body['tone_of_voice'] ?? 'none';
+		$data          = array(
 			'model'    => $api['model'] ?? 'gpt-4o-mini',
 			'messages' => array(
 				(object) array(
 					'role'    => 'system',
-					'content' => 'You are a helpful assistant that returns text in markdown format. Return only the result.',
+					'content' => self::get_system_instructions_for_text_prompts( $tone_of_voice ),
 				),
 				(object) array(
 					'role'    => 'user',

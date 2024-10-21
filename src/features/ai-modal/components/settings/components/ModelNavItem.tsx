@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import style from './Settings.module.css';
+import style from '../index.module.css';
 
 type Props = {
 	label: string;

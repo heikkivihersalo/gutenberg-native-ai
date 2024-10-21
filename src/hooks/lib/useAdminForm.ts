@@ -53,10 +53,10 @@ function useAdminForm({ path, nonce }: AdminFormProps): AdminFormHook {
 
 	/**
 	 * Handle form changes
-	 * @param {React.ChangeEvent<HTMLInputElement>} e Event
+	 * @param {FormOnChangeEvent} e Event
 	 * @return {void}
 	 */
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+	const handleChange = (e: FormOnChangeEvent): void => {
 		switch (e.target.type) {
 			case 'checkbox':
 				setFormData({
@@ -77,6 +77,12 @@ function useAdminForm({ path, nonce }: AdminFormProps): AdminFormHook {
 				});
 				break;
 			case 'textarea':
+				setFormData({
+					...formData,
+					[e.target.name]: e.target.value,
+				});
+				break;
+			case 'select-one':
 				setFormData({
 					...formData,
 					[e.target.name]: e.target.value,

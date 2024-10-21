@@ -7,7 +7,9 @@ import { combineReducers } from '@wordpress/data';
  * Internal dependencies
  */
 import actions from './data/actions.ts';
-import { status, selection, settings } from './data/reducer.ts';
+import controls from './data/controls.ts';
+import { status, selection, settings, mode } from './data/reducer.ts';
+import resolvers from './data/resolvers.ts';
 import selectors from './data/selectors.ts';
 
 /**
@@ -15,11 +17,14 @@ import selectors from './data/selectors.ts';
  */
 export const STORE_NAME = 'theme/ai';
 export const STORE_CONFIG = {
-	selectors,
 	actions,
+	controls,
 	reducer: combineReducers({
 		status,
 		selection,
 		settings,
+		mode,
 	}),
+	resolvers,
+	selectors,
 };

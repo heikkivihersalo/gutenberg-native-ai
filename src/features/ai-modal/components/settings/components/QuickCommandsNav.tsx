@@ -8,7 +8,7 @@ import { __ } from '@wordpress/i18n';
  */
 import QuickCommandsNavItem from './QuickCommandsNavItem';
 
-import style from './Settings.module.css';
+import style from '../index.module.css';
 
 /**
  * Quick commands navigation component

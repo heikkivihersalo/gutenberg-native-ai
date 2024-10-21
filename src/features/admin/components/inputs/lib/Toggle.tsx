@@ -3,14 +3,6 @@
  */
 import styles from './Toggle.module.css';
 
-type ToggleProps = {
-	label: string;
-	name: string;
-	checked: boolean;
-	onChange: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-	hideLabel?: boolean;
-};
-
 /**
  * Toggle Component
  * @param {Object} props - Component props
@@ -27,7 +19,7 @@ const Toggle = ({
 	checked,
 	onChange,
 	hideLabel = false,
-}: ToggleProps): JSX.Element => {
+}: FormToggleProps): JSX.Element => {
 	return (
 		<div className={styles.toggle}>
 			<label htmlFor={name}>

@@ -1,0 +1,10 @@
+.select {
+	display: grid;
+	grid-template-columns: 5rem 1fr;
+	align-items: center;
+	gap: 1rem;
+}
+
+.select > label {
+	line-height: 1.1;
+}
