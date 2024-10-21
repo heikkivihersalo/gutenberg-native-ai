@@ -69,14 +69,12 @@ const SettingsNavItem = ({
 			</button>
 			{isSubMenuOpen ? (
 				<Popover placement="right-end" anchor={subMenuanchor}>
-					<ul className={style.subMenu}>
-						<span className={style.navListItemLabel}>
-							{subMenuLabel}
-						</span>
+					<ul className={`${style.navList} ${style.subNavContainer}`}>
+						<span className={style.navLabel}>{subMenuLabel}</span>
 						{subMenuOptions.map((option) => (
 							<li key={option.value}>
 								<button
-									className={style.subMenuItem}
+									className={style.navListItem}
 									onClick={() =>
 										subMenuCallback(option.value)
 									}
