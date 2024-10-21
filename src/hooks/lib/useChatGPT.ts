@@ -7,6 +7,9 @@ import apiFetch from '@wordpress/api-fetch';
  * Internal dependencies
  */
 import { API_PATH } from '@constants/api';
+import { useSelect } from '@wordpress/data';
+
+import type { ModalSettings } from 'types/modal';
 import type { ChatGPTPromptInput } from '@hooks';
 
 type ReturnProps = {
@@ -19,6 +22,12 @@ type ReturnProps = {
  * @return {ReturnProps} ChatGPT API functions
  */
 function useChatGPT(): ReturnProps {
+	const { settings } = useSelect((select: WPAny) => {
+		return {
+			settings: select('theme/ai').getSettings() as ModalSettings,
+		};
+	}, []);
+
 	/**
 	 * Get text content from ChatGPT
 	 * @param {UserInput} props
@@ -34,6 +43,7 @@ function useChatGPT(): ReturnProps {
 			path: API_PATH.GENERATE_TEXT,
 			data: {
 				prompt: selection !== '' ? `${prompt}: ${selection}` : prompt,
+				tone_of_voice: settings.tone_of_voice,
 			},
 		});
 
