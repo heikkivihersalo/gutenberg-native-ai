@@ -1,7 +1,12 @@
 /**
  * Internal dependencies
  */
-import type { ModalSelection, ModalStatus, ModalSettings } from 'types/modal';
+import type {
+	ModalMode,
+	ModalSelection,
+	ModalStatus,
+	ModalSettings,
+} from 'types/modal';
 import type { Store } from 'types/store';
 
 /**
@@ -24,8 +29,9 @@ const selectors = {
 	},
 	/**
 	 * Get current mode from store state
+	 * @param {Store} state Store state
 	 */
-	getMode(state: Store): string {
+	getMode(state: Store): ModalMode {
 		return state.mode;
 	},
 	/**
