@@ -1,15 +1,16 @@
 /**
- * External dependencies
- */
-import { __ } from '@wordpress/i18n';
-
-/**
  * Internal dependencies
  */
 import styles from './Select.module.css';
 
 /**
  * Select Component
+ * @param {Object} props - Component props
+ * @param {string} props.label - Label for the select
+ * @param {string} props.name - Name of the select
+ * @param {string} props.value - Value of the select
+ * @param {Array} props.options - Options for the select
+ * @param {Function} props.onChange - Change handler for the select
  * @return {JSX.Element} Toggle component
  */
 const Select = ({
