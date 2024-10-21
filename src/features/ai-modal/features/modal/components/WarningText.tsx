@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import styles from './WarningText.module.css';
+import styles from '../index.module.css';
 
 /**
  * WarningText component
@@ -14,7 +14,7 @@ import styles from './WarningText.module.css';
  */
 const WarningText = (): JSX.Element => {
 	return (
-		<p className={styles.text}>
+		<p className={styles.warningText}>
 			{__(
 				'AI generated content may not be accurate. Always review the content before publishing.',
 				'gutenberg-native-ai'

@@ -8,38 +8,47 @@ import { useSelect, useDispatch } from '@wordpress/data';
 /**
  * Internal dependencies
  */
-
 import { useChatGPT } from '@hooks';
+
 import Form from '../form/Form';
-import PromptControl from '../form/PromptControl';
-import WarningText from '../form/WarningText';
-import ImagePreview from '../image-preview/ImagePreview';
+import FormInput from '../form/FormInput';
+import FormSubmitButton from '../form/FormSubmitButton';
+import CloseButton from '../CloseButton';
+import WarningText from '../WarningText';
+import Settings from '../../../settings';
+import ImagePreview from './ImagePreview';
 
 import { MODAL_STATUS } from '@constants/modal';
 
-import type { ModalStatus } from 'types/modal';
+import type { ModalStatus, ModalSelection } from 'types/modal';
+
+import styles from '../../index.module.css';
 
 /**
  * ImagePromptModal component
  * @return {JSX.Element} Popover component
  */
-const ImagePromptModal = (): JSX.Element | null => {
+const ModalImage = (): JSX.Element | null => {
 	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
 	const { status } = useSelect((select: WPAny) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
+			selection: select('theme/ai').getSelection() as ModalSelection,
 		};
 	}, []);
 
-	const { setStatus } = useDispatch('theme/ai');
+	const { setStatus, setSelection } = useDispatch('theme/ai');
 	const { getImage } = useChatGPT();
 
-	const modalOpen =
-		status === MODAL_STATUS.VISIBLE || status === MODAL_STATUS.LOADING;
-
-	if (!modalOpen) {
-		return null;
-	}
+	const handleCLose = () => {
+		setStatus(MODAL_STATUS.INITIAL);
+		setSelection({
+			block: null,
+			text: '',
+			start: 0,
+			end: 0,
+		});
+	};
 
 	/**
 	 * Handle generate content
@@ -77,17 +86,21 @@ const ImagePromptModal = (): JSX.Element | null => {
 
 	return (
 		<Form onSubmit={generateContent}>
-			<PromptControl
-				status={status}
-				placeholder={__(
-					'What kind of image you want to generate?',
-					'gutenberg-native-ai'
-				)}
-			/>
+			<div className={styles.controlContainer}>
+				<FormInput
+					placeholder={__(
+						'What kind of image you want to generate?',
+						'gutenberg-native-ai'
+					)}
+				/>
+				<FormSubmitButton status={status} />
+				<CloseButton closeCallback={handleCLose} />
+				<Settings />
+			</div>
 			<ImagePreview preview={preview} />
 			<WarningText />
 		</Form>
 	);
 };
 
-export default ImagePromptModal;
+export default ModalImage;

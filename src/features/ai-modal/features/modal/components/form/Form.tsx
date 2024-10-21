@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import styles from './Form.module.css';
+import styles from '../../index.module.css';
 
 /**
  * Form component
