@@ -19,12 +19,14 @@ type Props = {
 };
 
 /**
- * GeneralSettingsNavItem component
+ * SettingsNavItem component
  * @param {Object} props - Component props
- * @param {string} props.label - Label
- * @param {JSX.Element} props.icon - Icon
- * @param {boolean} props.hasSubMenu - Has sub menu
- * @param {Function} props.selectCallback - Select callback
+ * @param {string} props.label - Label for the navigation item
+ * @param {JSX.Element} props.icon - Icon for the navigation item
+ * @param {string} props.subMenuValue - Value for the sub menu
+ * @param {string} props.subMenuLabel - Label for the sub menu
+ * @param {Array<{ value: string; label: string }>} props.subMenuOptions - Options for the sub menu
+ * @param {Function} props.subMenuCallback - Callback for the sub menu
  * @return {JSX.Element} Model navigation component
  */
 const SettingsNavItem = ({
