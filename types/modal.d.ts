@@ -6,7 +6,7 @@ import type { BlockInstance } from '@wordpress/blocks';
 /**
  * Internal dependencies
  */
-import { MODAL_STATUS } from '@constants/modal';
+import { MODAL_STATUS, MODAL_MODE } from '@constants/modal';
 
 /**
  * Data types
@@ -20,7 +20,10 @@ type ModalSelection = {
 	end: number;
 };
 
+type ModalMode = (typeof MODAL_MODE)[keyof typeof MODAL_MODE];
+
 type ModalSettings = {
-	model: 'text' | 'image';
+	model: string;
+	tone_of_voice: string;
 	[key: string]: any;
 };
