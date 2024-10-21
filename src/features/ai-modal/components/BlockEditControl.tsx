@@ -21,7 +21,7 @@ import {
 	highlightTextSelection,
 } from '../utils';
 
-import type { ModalSettings } from 'types/modal';
+import type { ModalMode } from 'types/modal';
 
 /**
  * Higher order component to add AI controls to the paragraph block
@@ -42,9 +42,9 @@ const BlockEditControl = createHigherOrderComponent(function (
 		/**
 		 * Handle state from the redux store
 		 */
-		const { settings } = useSelect((select: WPAny) => {
+		const { mode } = useSelect((select: WPAny) => {
 			return {
-				settings: select('theme/ai').getSettings() as ModalSettings,
+				mode: select('theme/ai').getMode() as ModalMode,
 			};
 		}, []);
 
@@ -90,8 +90,8 @@ const BlockEditControl = createHigherOrderComponent(function (
 			<ShortcutProvider>
 				<BlockEdit {...props} />
 				<Popover placement="bottom" anchor={anchor}>
-					{settings.model === 'text' && <TextPromptModal />}
-					{settings.model === 'image' && <ImagePromptModal />}
+					{mode === 'text' && <TextPromptModal />}
+					{mode === 'image' && <ImagePromptModal />}
 				</Popover>
 			</ShortcutProvider>
 		);
