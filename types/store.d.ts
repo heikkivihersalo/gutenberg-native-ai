@@ -2,7 +2,8 @@
  * Internal dependencies
  */
 import { ACTIONS } from '@constants/actions';
-import { ModalSelection, ModalStatus, ModalSettings } from './modal';
+import { API_PATH } from '@constants/api';
+import { ModalMode, ModalSelection, ModalStatus, ModalSettings } from './modal';
 
 /**
  * Default Redux Store Generics
@@ -33,15 +34,25 @@ type SetSelectionAction = StoreAction<
 	ModalSelection
 >;
 
+type SetModeAction = StoreAction<typeof ACTIONS.SET_MODE, ModalMode>;
+
+type GetSettingsAction = StoreAction<
+	typeof ACTIONS.GET_SETTINGS,
+	typeof API_PATH.GET_SETTINGS
+>;
+
 type SetSettingsAction = StoreAction<
 	typeof ACTIONS.SET_SETTINGS,
 	ModalSettings
 >;
 
+type SettingsApiResponse = StoreApiResponse<ModalSettings>;
+
 /**
  * Store type
  */
 type Store = {
+	mode: ModalMode;
 	status: ModalStatus;
 	selection: ModalSelection;
 	settings: ModalSettings;
