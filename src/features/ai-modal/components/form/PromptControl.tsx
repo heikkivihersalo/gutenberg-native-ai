@@ -9,7 +9,7 @@ import { useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import { MODAL_STATUS } from '@constants/modal';
-import Settings from '../settings/Settings';
+import Settings from '../settings';
 
 import styles from './PromptControl.module.css';
 
