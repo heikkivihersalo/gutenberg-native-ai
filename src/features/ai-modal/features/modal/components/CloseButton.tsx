@@ -11,7 +11,7 @@ import styles from '../index.module.css';
 /**
  * SubmitButton component
  * @param {Object} props - Component props
- * @param {string} props.status - Popover status
+ * @param {Function} props.closeCallback - Close button callback
  * @return {JSX.Element} SubmitButton component
  */
 const CloseButton = ({

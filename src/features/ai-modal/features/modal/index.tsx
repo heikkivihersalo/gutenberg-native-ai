@@ -1,7 +1,6 @@
 /**
  * WordPress dependencies
  */
-import { __ } from '@wordpress/i18n';
 import { Popover } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 
@@ -18,7 +17,8 @@ import type { ModalStatus } from 'types/modal';
 /**
  * Textarea component
  * @param {Object} props - Component props
- * @param {string} props.placeholder - Textarea placeholder
+ * @param {Element} props.anchor - Popover anchor
+ * @param {string} props.mode - Popover mode
  * @return {JSX.Element} Textarea component
  */
 const Modal = ({
