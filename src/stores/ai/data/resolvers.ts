@@ -10,12 +10,17 @@ import {
 	SettingsApiResponse,
 } from 'types/store';
 
-const checkApiKey = (api_key: string) => {
-	if (!api_key) {
+/**
+ * Check that API key is set
+ * @param {string} apiKey - API key
+ * @return {boolean} API key status
+ */
+const checkApiKey = (apiKey: string): boolean => {
+	if (!apiKey) {
 		return false;
 	}
 
-	if (api_key === '') {
+	if (apiKey === '') {
 		return false;
 	}
 
