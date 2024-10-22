@@ -33,4 +33,18 @@ type ChatGPTImageResponse = {
 	data: Array<ChatGPTImage>;
 };
 
-type ChatGPTResponse = ChatGPTTextResponse | ChatGPTImageResponse;
+type ChatGPTErrorInvalidKey = {
+	error: {
+		code: string;
+		message: string;
+		param: null;
+		type: string;
+	};
+};
+
+type ChatGPTError = ChatGPTErrorInvalidKey;
+
+type ChatGPTResponse =
+	| ChatGPTTextResponse
+	| ChatGPTImageResponse
+	| ChatGPTError;
