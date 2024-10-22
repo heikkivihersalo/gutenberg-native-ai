@@ -26,9 +26,12 @@
         <!-- Don't require too strict inline commenting, it's a good thing to documentate, let's not make it frustrating -->
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
         <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
+        <exclude name="Generic.Commenting.DocComment.MissingShort" />
 
         <!-- Don't require too strict class naming conventions -->
         <exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
     </rule>
 
     <!-- Verify that the text_domain is set to the desired text-domain.

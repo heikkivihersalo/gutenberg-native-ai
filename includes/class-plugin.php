@@ -79,8 +79,8 @@ class Plugin {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_options_page_hooks();
+		$this->define_scripts_and_styles();
+		$this->define_options_page();
 		$this->add_api_routes();
 	}
 
@@ -91,6 +91,11 @@ class Plugin {
 	 * @access   private
 	 */
 	private function load_dependencies() {
+		/**
+		 * Load script interface
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'includes/interfaces/interface-scripts.php';
+
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
@@ -107,11 +112,13 @@ class Plugin {
 		* The class responsible for defining all actions that occur in the admin area.
 		*/
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-scripts.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-scripts-editor.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-scripts-admin.php';
 
 		/**
-		 * The class responsible for loading and handling the admin area.
+		 * The class responsible for loading and handling the admin options area.
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-options.php';
 
 		/**
 		 * The class responsible for handling API requests.
@@ -163,11 +170,12 @@ class Plugin {
 	 * @since    0.1.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
-		$plugin_scripts = new Scripts( $this->get_plugin_name(), $this->get_version() );
+	private function define_scripts_and_styles() {
+		$editor_scripts = new ScriptsEditor( $this->get_plugin_name(), $this->get_version() );
+		$admin_scripts  = new ScriptsAdmin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_scripts, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_scripts, 'enqueue_scripts' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $editor_scripts, 'enqueue_scripts_and_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $admin_scripts, 'enqueue_scripts_and_styles' );
 	}
 
 	/**
@@ -177,11 +185,10 @@ class Plugin {
 	 * @since    0.1.3
 	 * @access   private
 	 */
-	private function define_options_page_hooks() {
-		$admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+	private function define_options_page() {
+		$options = new Options( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_menu', $admin, 'add_plugin_options' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $admin, 'enqueue_admin_scripts_and_styles' );
+		$this->loader->add_action( 'admin_menu', $options, 'add_plugin_options' );
 	}
 
 	/**
