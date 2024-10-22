@@ -79,7 +79,7 @@ abstract class Scripts implements ScriptsInterface {
 		}
 
 		$assets = include $asset_path;
-		wp_enqueue_style( $handle, $style_url, array(), $assets, 'all' );
+		wp_enqueue_style( $handle, $style_url, array(), $assets['version'], 'all' );
 	}
 
 	/**
