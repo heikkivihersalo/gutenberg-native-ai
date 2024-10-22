@@ -12,7 +12,7 @@ import {
 	AdminApiResponse,
 	AdminFormHook,
 	AdminFormProps,
-	AdminRequestData,
+	AdminFormData,
 } from 'types/admin';
 
 /**
@@ -23,7 +23,7 @@ import {
  * @return {Object} formData, setFormData, handleChange, handleSave
  */
 function useAdminForm({ path, nonce }: AdminFormProps): AdminFormHook {
-	const [formData, setFormData] = useState({} as AdminRequestData);
+	const [formData, setFormData] = useState({} as AdminFormData);
 
 	/**
 	 * Get initial values
@@ -99,7 +99,7 @@ function useAdminForm({ path, nonce }: AdminFormProps): AdminFormHook {
 	 * @param {Object} props.data Form data
 	 * @return {void}
 	 */
-	const handleSave = ({ data }: { data: AdminRequestData }): void => {
+	const handleSave = ({ data }: { data: AdminFormData }): void => {
 		if (nonce) {
 			apiFetch.use(apiFetch.createNonceMiddleware(nonce));
 		} else {
