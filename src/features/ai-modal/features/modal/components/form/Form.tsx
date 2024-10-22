@@ -22,7 +22,7 @@ import styles from '../../index.module.css';
 const Form = ({
 	children,
 	onSubmit,
-	hasApiKey = false,
+	hasApiKey = true,
 }: {
 	children: React.ReactNode;
 	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
