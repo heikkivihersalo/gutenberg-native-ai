@@ -16,6 +16,7 @@ import styles from '../../index.module.css';
  * @param {Object} props - Component props
  * @param {React.ReactNode} props.children - Form children
  * @param {Function} props.onSubmit - Form submit handler
+ * @param {boolean} props.hasApiKey - API key status
  * @return {JSX.Element} Form component
  */
 const Form = ({
