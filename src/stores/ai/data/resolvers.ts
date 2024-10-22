@@ -42,7 +42,10 @@ const resolvers = {
 	> {
 		const result = yield actions.getSettings(API_PATH.GET_SETTINGS);
 		return actions.setSettings({
-			model: result.data.model,
+			model: {
+				text: result.data.model_text,
+				image: result.data.model_image,
+			},
 			tone_of_voice: result.data.tone_of_voice,
 			has_api_key: checkApiKey(result.data.api_key),
 		});
