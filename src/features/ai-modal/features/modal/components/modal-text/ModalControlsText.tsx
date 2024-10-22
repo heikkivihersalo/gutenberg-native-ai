@@ -24,7 +24,7 @@ import {
 
 import { MODAL_STATUS } from '@constants/modal';
 
-import type { ModalStatus, ModalSelection } from 'types/modal';
+import type { ModalStatus, ModalSelection, ModalSettings } from 'types/modal';
 
 import styles from '../../index.module.css';
 
@@ -33,10 +33,11 @@ import styles from '../../index.module.css';
  * @return {JSX.Element} Popover component
  */
 const ModalControlsText = (): JSX.Element | null => {
-	const { status, selection } = useSelect((select: WPAny) => {
+	const { status, selection, settings } = useSelect((select: WPAny) => {
 		return {
 			status: select('theme/ai').getStatus() as ModalStatus,
 			selection: select('theme/ai').getSelection() as ModalSelection,
+			settings: select('theme/ai').getSettings() as ModalSettings,
 		};
 	}, []);
 
@@ -111,7 +112,7 @@ const ModalControlsText = (): JSX.Element | null => {
 	};
 
 	return (
-		<Form onSubmit={generateContent}>
+		<Form onSubmit={generateContent} hasApiKey={settings.has_api_key}>
 			<div className={styles.controlContainer}>
 				<FormInput
 					placeholder={__(
