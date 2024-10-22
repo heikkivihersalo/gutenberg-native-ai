@@ -1,6 +1,14 @@
 /**
+ * WordPress dependencies
+ */
+import { useDispatch } from '@wordpress/data';
+
+/**
  * Internal dependencies
  */
+import { MODAL_STATUS } from '@constants/modal';
+import CloseButton from '../CloseButton';
+
 import styles from '../../index.module.css';
 
 /**
@@ -13,14 +21,48 @@ import styles from '../../index.module.css';
 const Form = ({
 	children,
 	onSubmit,
+	hasApiKey = false,
 }: {
 	children: React.ReactNode;
 	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+	hasApiKey: boolean;
 }): JSX.Element => {
+	const { setStatus, setSelection } = useDispatch('theme/ai');
+
+	const handleClose = () => {
+		setStatus(MODAL_STATUS.INITIAL);
+		setSelection({
+			block: null,
+			text: '',
+			start: 0,
+			end: 0,
+		});
+	};
+
 	return (
-		<form className={styles.form} onSubmit={onSubmit}>
-			{children}
-		</form>
+		<div className={styles.formContainer} data-api-active={hasApiKey}>
+			<form className={styles.form} onSubmit={onSubmit}>
+				{children}
+			</form>
+			{!hasApiKey ? (
+				<>
+					<div className={styles.formOverlay}>
+						<p>
+							Please create your API key in the{' '}
+							<a
+								href="https://app.openai.com/account/api-keys"
+								target="_blank"
+								rel="noreferrer"
+							>
+								OpenAI dashboard
+							</a>{' '}
+							to enable this feature.
+						</p>
+					</div>
+					<CloseButton closeCallback={handleClose} />
+				</>
+			) : null}
+		</div>
 	);
 };
 
