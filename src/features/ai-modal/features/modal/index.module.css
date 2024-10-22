@@ -65,16 +65,11 @@
 /**
  * Handle the form blur when no API key is set
  */
-[data-api-active="false"] .form {
-	pointer-events: none;
-	filter: blur(4px);
-}
-
-[data-api-active="false"] .formContainer {
+[data-api-active="false"].formContainer {
 	position: relative;
 }
 
-[data-api-active="false"] .formContainer button {
+[data-api-active="false"].formContainer button {
 	--_background-color: transparent;
 
 	position: absolute;
@@ -82,8 +77,13 @@
 	right: 0.25rem;
 }
 
-[data-api-active="false"] .formContainer button svg {
+[data-api-active="false"].formContainer button svg {
 	fill: var(--wp--preset--color--foreground);
+}
+
+[data-api-active="false"] .form {
+	pointer-events: none;
+	filter: blur(4px);
 }
 
 [data-api-active="false"] .formOverlay {
