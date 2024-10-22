@@ -70,11 +70,11 @@
 	filter: blur(4px);
 }
 
-.formContainer {
+[data-api-active="false"] .formContainer {
 	position: relative;
 }
 
-.formContainer button {
+[data-api-active="false"] .formContainer button {
 	--_background-color: transparent;
 
 	position: absolute;
@@ -82,11 +82,11 @@
 	right: 0.25rem;
 }
 
-.formContainer button svg {
+[data-api-active="false"] .formContainer button svg {
 	fill: var(--wp--preset--color--foreground);
 }
 
-.formOverlay {
+[data-api-active="false"] .formOverlay {
 	display: grid;
 	align-content: center;
 	justify-content: center;
@@ -100,7 +100,7 @@
 	background-color: rgba(255, 255, 255, 0.5);
 }
 
-.formOverlay > * {
+[data-api-active="false"] .formOverlay > * {
 	max-width: 80%;
 	margin-inline: auto;
 	text-align: center;
