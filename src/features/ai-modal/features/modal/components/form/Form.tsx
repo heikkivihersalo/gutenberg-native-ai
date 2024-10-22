@@ -50,13 +50,21 @@ const Form = ({
 						<p>
 							Please create your API key in the{' '}
 							<a
-								href="https://app.openai.com/account/api-keys"
+								href="https://platform.openai.com/api-keys"
 								target="_blank"
 								rel="noreferrer"
 							>
 								OpenAI dashboard
 							</a>{' '}
-							to enable this feature.
+							and add it to the{' '}
+							<a
+								href="/wp-admin/options-general.php?page=gutenberg-native-ai"
+								target="_blank"
+								rel="noreferrer"
+							>
+								plugin options
+							</a>{' '}
+							to enable the AI features
 						</p>
 					</div>
 					<CloseButton closeCallback={handleClose} />
