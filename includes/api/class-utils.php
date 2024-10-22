@@ -174,7 +174,7 @@ final class Utils {
 		$api           = self::get_chatgpt_settings();
 		$tone_of_voice = $body['tone_of_voice'] ?? 'none';
 		$data          = array(
-			'model'    => $api['model'] ?? 'gpt-4o-mini',
+			'model'    => $api['model_text'] ?? 'gpt-4o-mini',
 			'messages' => array(
 				(object) array(
 					'role'    => 'system',
@@ -223,7 +223,7 @@ final class Utils {
 		$body = json_decode( $request->get_body(), true );
 		$api  = self::get_chatgpt_settings();
 		$data = array(
-			'model'           => 'dall-e-3',
+			'model'           => $api['model_image'] ?? 'dall-e-3',
 			'prompt'          => $body['prompt'],
 			'n'               => 1,
 			'response_format' => 'b64_json',
