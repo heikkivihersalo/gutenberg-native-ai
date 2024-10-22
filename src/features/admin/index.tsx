@@ -13,9 +13,13 @@ import { OptionBody, OptionGroup } from './components/containers';
 import { Form, FormHead, FormBody, FormButton } from './components/form';
 import { Input, Select } from './components/inputs';
 
-import { TONE_OF_VOICE } from '@constants/options';
+import {
+	TONE_OF_VOICE,
+	OPEN_AI_TEXT_MODEL,
+	OPEN_AI_IMAGE_MODEL,
+} from '@constants/options';
 
-import type { ChatGPTAdminRequestData } from 'types/admin';
+import type { ChatGPTFormData } from 'types/admin';
 
 import './style.css';
 
@@ -60,23 +64,38 @@ const Main = (): JSX.Element | null => {
 							name={__('API Settings', 'gutenberg-native-ai')}
 						/>
 						<FormBody>
-							<Input
-								type="text"
-								label={__('Model', 'gutenberg-native-ai')}
-								name="model"
-								placeholder="gpt-4o-mini"
-								value="gpt-4o-mini"
-								disabled={true}
+							<Select
+								label={__(
+									'Model (Text)',
+									'gutenberg-native-ai'
+								)}
+								name="model_text"
+								value={(formData as ChatGPTFormData).model_text}
+								options={OPEN_AI_TEXT_MODEL}
+								onChange={
+									handleChange as React.ChangeEventHandler<HTMLSelectElement>
+								}
+							/>
+							<Select
+								label={__(
+									'Model (Image)',
+									'gutenberg-native-ai'
+								)}
+								name="model_image"
+								value={
+									(formData as ChatGPTFormData).model_image
+								}
+								options={OPEN_AI_IMAGE_MODEL}
+								onChange={
+									handleChange as React.ChangeEventHandler<HTMLSelectElement>
+								}
 							/>
 							<Input
 								type="text"
 								label={__('API Key', 'gutenberg-native-ai')}
 								name="api_key"
 								placeholder="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-								value={
-									(formData as ChatGPTAdminRequestData)
-										.api_key
-								}
+								value={(formData as ChatGPTFormData).api_key}
 								onChange={
 									handleChange as React.ChangeEventHandler<HTMLInputElement>
 								}
@@ -88,8 +107,7 @@ const Main = (): JSX.Element | null => {
 								)}
 								name="tone_of_voice"
 								value={
-									(formData as ChatGPTAdminRequestData)
-										.tone_of_voice
+									(formData as ChatGPTFormData).tone_of_voice
 								}
 								options={TONE_OF_VOICE}
 								onChange={
