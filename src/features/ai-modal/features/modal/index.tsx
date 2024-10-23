@@ -8,6 +8,7 @@ import { useSelect } from '@wordpress/data';
  * Internal dependencies
  */
 import { MODAL_STATUS } from '@constants/modal';
+import { DATA_STORE } from '@constants/stores';
 
 import ModalControlsText from './components/modal-text/ModalControlsText';
 import ModalControlsImage from './components/modal-image/ModalControlsImage';
@@ -30,7 +31,7 @@ const Modal = ({
 }): JSX.Element | null => {
 	const { status } = useSelect((select: WPAny) => {
 		return {
-			status: select('theme/ai').getStatus() as ModalStatus,
+			status: select(DATA_STORE).getStatus() as ModalStatus,
 		};
 	}, []);
 

@@ -23,6 +23,7 @@ import {
 } from '../../../../utils';
 
 import { MODAL_STATUS } from '@constants/modal';
+import { DATA_STORE } from '@constants/stores';
 
 import type { ModalStatus, ModalSelection, ModalSettings } from 'types/modal';
 
@@ -35,13 +36,13 @@ import styles from '../../index.module.css';
 const ModalControlsText = (): JSX.Element | null => {
 	const { status, selection, settings } = useSelect((select: WPAny) => {
 		return {
-			status: select('theme/ai').getStatus() as ModalStatus,
-			selection: select('theme/ai').getSelection() as ModalSelection,
-			settings: select('theme/ai').getSettings() as ModalSettings,
+			status: select(DATA_STORE).getStatus() as ModalStatus,
+			selection: select(DATA_STORE).getSelection() as ModalSelection,
+			settings: select(DATA_STORE).getSettings() as ModalSettings,
 		};
 	}, []);
 
-	const { setStatus, setSelection } = useDispatch('theme/ai');
+	const { setStatus, setSelection } = useDispatch(DATA_STORE);
 	const { getText } = useChatGPT();
 
 	const handleCLose = () => {

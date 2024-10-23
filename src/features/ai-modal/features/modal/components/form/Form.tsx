@@ -7,6 +7,7 @@ import { useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import { MODAL_STATUS } from '@constants/modal';
+import { DATA_STORE } from '@constants/stores';
 import CloseButton from '../CloseButton';
 
 import styles from '../../index.module.css';
@@ -28,7 +29,7 @@ const Form = ({
 	onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 	hasApiKey: boolean;
 }): JSX.Element => {
-	const { setStatus, setSelection } = useDispatch('theme/ai');
+	const { setStatus, setSelection } = useDispatch(DATA_STORE);
 
 	const handleClose = () => {
 		setStatus(MODAL_STATUS.INITIAL);
