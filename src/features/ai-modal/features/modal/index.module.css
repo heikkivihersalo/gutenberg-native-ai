@@ -3,8 +3,18 @@
 	flex-direction: row;
 	gap: 0.375rem;
 	align-items: center;
+	justify-content: space-between;
+
+	min-width: 35rem;
 
 	position: relative;
+}
+
+.controlContainerButtons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.375rem;
 }
 
 /** ======================
@@ -104,6 +114,34 @@
 	max-width: 80%;
 	margin-inline: auto;
 	text-align: center;
+}
+
+/** ======================
+ ** LANGUAGE SELECTOR
+ ** ==================== */
+.languageSelector {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+	align-items: center;
+
+	width: 100%;
+	min-width: 25rem;
+
+	position: relative;
+}
+
+.languageSelectorInputWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.375rem;
+}
+
+.languageSelectorLabel {
+	font-size: 0.675rem;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 /** ======================
