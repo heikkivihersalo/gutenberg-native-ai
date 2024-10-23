@@ -6,7 +6,8 @@ declare module '@hooks' {
 
 	export type ChatGPTTranslateInput = {
 		selection: string;
-		language: string;
+		languageFrom;
+		languageTo;
 	};
 
 	export const useChatGPT: () => {
