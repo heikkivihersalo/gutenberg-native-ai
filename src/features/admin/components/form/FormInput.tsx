@@ -1,10 +1,10 @@
 /**
  * Internal dependencies
  */
-import styles from './Input.module.css';
+import styles from '../../index.module.css';
 
 /**
- * Component for number input
+ * FormInput Component
  * @param {Object} props - Component props
  * @param {FormInputType} props.type - Type of the input
  * @param {string} props.label - Label for the input
@@ -13,9 +13,9 @@ import styles from './Input.module.css';
  * @param {string} props.placeholder - Placeholder for the input
  * @param {Function} props.onChange - Change handler for the input
  * @param {boolean} props.disabled - Disabled state for the input
- * @return {JSX.Element} Text input component
+ * @return {JSX.Element} FormInput component
  */
-const Input = ({
+const FormInput = ({
 	type,
 	label,
 	name,
@@ -25,8 +25,10 @@ const Input = ({
 	disabled = false,
 }: FormInputProps): JSX.Element => {
 	return (
-		<div className={styles.input}>
-			<label htmlFor={name}>{label}</label>
+		<div className={styles.formInputWrapper}>
+			<label className={styles.formInputLabel} htmlFor={name}>
+				{label}
+			</label>
 			<input
 				type={type}
 				id={name}
@@ -40,4 +42,4 @@ const Input = ({
 	);
 };
 
-export { Input };
+export default FormInput;
