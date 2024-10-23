@@ -3,7 +3,7 @@
  * The enqueue scripts class.
  *
  * @link       https://www.kotisivu.dev
- * @since      0.1.3
+ * @since      0.2.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -20,7 +20,7 @@ abstract class Scripts implements ScriptsInterface {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -29,7 +29,7 @@ abstract class Scripts implements ScriptsInterface {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -38,7 +38,7 @@ abstract class Scripts implements ScriptsInterface {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since 0.1.3
+	 * @since 0.2.0
 	 * @access public
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version The version of this plugin.

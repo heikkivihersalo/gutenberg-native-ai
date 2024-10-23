@@ -102,7 +102,7 @@ final class Utils {
 	/**
 	 * Get system instructions for text prompts
 	 *
-	 * @since 0.1.3
+	 * @since 0.2.0
 	 * @access private
 	 * @param string $tone_of_voice The tone of voice.
 	 * @return string

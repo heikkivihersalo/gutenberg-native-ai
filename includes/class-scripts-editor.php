@@ -20,7 +20,7 @@ class ScriptsEditor extends Scripts implements ScriptsInterface {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -29,7 +29,7 @@ class ScriptsEditor extends Scripts implements ScriptsInterface {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -38,7 +38,7 @@ class ScriptsEditor extends Scripts implements ScriptsInterface {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since 0.1.3
+	 * @since 0.2.0
 	 * @access public
 	 * @param string $plugin_name The name of this plugin.
 	 * @param string $version The version of this plugin.
@@ -52,7 +52,7 @@ class ScriptsEditor extends Scripts implements ScriptsInterface {
 	/**
 	 * Check if the current page is the plugin's editor page
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @param string $hook The current admin page
 	 * @return bool
 	 */
@@ -63,7 +63,7 @@ class ScriptsEditor extends Scripts implements ScriptsInterface {
 	/**
 	 * Run the editor scripts and styles
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @param string $hook The current admin page
 	 * @return void
 	 */
