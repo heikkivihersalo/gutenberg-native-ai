@@ -7,9 +7,27 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { MODAL_STATUS } from '@constants/modal';
-import type { ModalStatus } from 'types/modal';
+import type { ModalMode, ModalStatus } from 'types/modal';
 
 import styles from '../../index.module.css';
+
+/**
+ * Get button text
+ * @param {string} mode - Modal mode
+ * @return {string} Button text
+ */
+const getButtonText = (mode: ModalMode): string => {
+	switch (mode) {
+		case 'text':
+			return __('Generate', 'gutenberg-native-ai');
+		case 'image':
+			return __('Generate', 'gutenberg-native-ai');
+		case 'translate':
+			return __('Translate', 'gutenberg-native-ai');
+		default:
+			return __('Generate', 'gutenberg-native-ai');
+	}
+};
 
 /**
  * SubmitButton component
@@ -17,7 +35,13 @@ import styles from '../../index.module.css';
  * @param {string} props.status - Popover status
  * @return {JSX.Element} SubmitButton component
  */
-const FormSubmitButton = ({ status }: { status: ModalStatus }): JSX.Element => {
+const FormSubmitButton = ({
+	status,
+	mode,
+}: {
+	status: ModalStatus;
+	mode: ModalMode;
+}): JSX.Element => {
 	return (
 		<button
 			type="submit"
@@ -40,7 +64,7 @@ const FormSubmitButton = ({ status }: { status: ModalStatus }): JSX.Element => {
 					/>
 				</svg>
 			) : (
-				__('Generate', 'gutenberg-native-ai')
+				getButtonText(mode)
 			)}
 		</button>
 	);
