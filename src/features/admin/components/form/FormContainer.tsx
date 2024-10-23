@@ -6,7 +6,7 @@ import { __, sprintf } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import styles from '../index.module.css';
+import styles from '../../index.module.css';
 
 /**
  * Header

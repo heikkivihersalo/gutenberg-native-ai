@@ -18,7 +18,7 @@ import {
 
 import type { ChatGPTFormData } from 'types/admin';
 
-import styles from '../index.module.css';
+import styles from '../../index.module.css';
 
 /**
  * Header
