@@ -14,7 +14,7 @@ import style from '../index.module.css';
  * Quick commands navigation component
  * @return {JSX.Element} Quick commands navigation component
  */
-const QuickCommandsNav = () => {
+const QuickCommandsNav = (): JSX.Element => {
 	return (
 		<div className={style.navContainer}>
 			<div className={style.navLabel}>
