@@ -7,6 +7,7 @@ import apiFetch from '@wordpress/api-fetch';
  * Internal dependencies
  */
 import { API_PATH } from '@constants/api';
+import { DATA_STORE } from '@constants/stores';
 import { useSelect } from '@wordpress/data';
 
 import type { ModalSettings } from 'types/modal';
@@ -24,7 +25,7 @@ type ReturnProps = {
 function useChatGPT(): ReturnProps {
 	const { settings } = useSelect((select: WPAny) => {
 		return {
-			settings: select('theme/ai').getSettings() as ModalSettings,
+			settings: select(DATA_STORE).getSettings() as ModalSettings,
 		};
 	}, []);
 
