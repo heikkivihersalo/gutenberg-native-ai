@@ -66,14 +66,16 @@ function useChatGPT(): ReturnProps {
 	 */
 	const translate = async ({
 		selection,
-		language,
+		languageFrom,
+		languageTo,
 	}: ChatGPTTranslateInput): Promise<string> => {
 		const response: unknown = await apiFetch({
 			method: 'POST',
 			path: API_PATH.TRANSLATE_TEXT,
 			data: {
 				text: selection,
-				language,
+				languageFrom,
+				languageTo,
 			},
 		});
 
