@@ -10,6 +10,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import { MODAL_STATUS, ALLOWED_TEXT_BLOCKS } from '@constants/modal';
+import { DATA_STORE } from '@constants/stores';
 
 import Modal from './modal';
 
@@ -42,11 +43,11 @@ const BlockEditControl = createHigherOrderComponent(function (
 		 */
 		const { mode } = useSelect((select: WPAny) => {
 			return {
-				mode: select('theme/ai').getMode() as ModalMode,
+				mode: select(DATA_STORE).getMode() as ModalMode,
 			};
 		}, []);
 
-		const { setStatus, setSelection } = useDispatch('theme/ai');
+		const { setStatus, setSelection } = useDispatch(DATA_STORE);
 
 		/**
 		 * Handle keyboard shortcut to open the popover
