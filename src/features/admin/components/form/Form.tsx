@@ -21,8 +21,8 @@ import type { ChatGPTFormData } from 'types/admin';
 import styles from '../../index.module.css';
 
 /**
- * Header
- * @return {JSX.Element} Form Button Component
+ * Header Component
+ * @return {JSX.Element | null} Header Component
  */
 const Form = (): JSX.Element | null => {
 	const { formData, handleChange, handleSave } = useAdminForm({

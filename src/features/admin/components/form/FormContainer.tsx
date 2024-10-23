@@ -9,8 +9,10 @@ import { __, sprintf } from '@wordpress/i18n';
 import styles from '../../index.module.css';
 
 /**
- * Header
- * @return {JSX.Element} Form Button Component
+ * FormContainer Component
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child components
+ * @return {JSX.Element} FormContainer Component
  */
 const FormContainer = ({
 	children,

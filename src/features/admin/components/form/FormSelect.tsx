@@ -4,14 +4,14 @@
 import styles from '../../index.module.css';
 
 /**
- * Select Component
+ * FormSelect Component
  * @param {Object} props - Component props
  * @param {string} props.label - Label for the select
  * @param {string} props.name - Name of the select
  * @param {string} props.value - Value of the select
  * @param {Array} props.options - Options for the select
  * @param {Function} props.onChange - Change handler for the select
- * @return {JSX.Element} Toggle component
+ * @return {JSX.Element} FormSelect component
  */
 const FormSelect = ({
 	label,

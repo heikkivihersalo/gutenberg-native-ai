@@ -4,7 +4,7 @@
 import styles from '../../index.module.css';
 
 /**
- * Component for number input
+ * FormInput Component
  * @param {Object} props - Component props
  * @param {FormInputType} props.type - Type of the input
  * @param {string} props.label - Label for the input
@@ -13,7 +13,7 @@ import styles from '../../index.module.css';
  * @param {string} props.placeholder - Placeholder for the input
  * @param {Function} props.onChange - Change handler for the input
  * @param {boolean} props.disabled - Disabled state for the input
- * @return {JSX.Element} Text input component
+ * @return {JSX.Element} FormInput component
  */
 const FormInput = ({
 	type,
