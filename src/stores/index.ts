@@ -12,7 +12,9 @@ import { status, selection, settings, mode } from './data/reducer.ts';
 import resolvers from './data/resolvers.ts';
 import selectors from './data/selectors.ts';
 
-const Store = createReduxStore('gutenberg-native-ai', {
+import { DATA_STORE } from '@constants/stores.ts';
+
+const Store = createReduxStore(DATA_STORE, {
 	actions,
 	controls,
 	reducer: combineReducers({
