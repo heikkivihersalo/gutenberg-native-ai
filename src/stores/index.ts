@@ -1,13 +1,28 @@
 /**
  * WordPress dependencies
  */
-import { createReduxStore, register } from '@wordpress/data';
+import { createReduxStore, combineReducers, register } from '@wordpress/data';
 
 /**
- * AI Store
+ * Internal dependencies
  */
-import { STORE_NAME as AI_STORE_NAME, STORE_CONFIG as AIConfig } from './ai';
+import actions from './data/actions.ts';
+import controls from './data/controls.ts';
+import { status, selection, settings, mode } from './data/reducer.ts';
+import resolvers from './data/resolvers.ts';
+import selectors from './data/selectors.ts';
 
-const AIStore = createReduxStore(AI_STORE_NAME, AIConfig);
+const Store = createReduxStore('gutenberg-native-ai', {
+	actions,
+	controls,
+	reducer: combineReducers({
+		status,
+		selection,
+		settings,
+		mode,
+	}),
+	resolvers,
+	selectors,
+});
 
-register(AIStore);
+register(Store);
