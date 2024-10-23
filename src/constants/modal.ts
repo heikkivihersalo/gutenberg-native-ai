@@ -8,6 +8,7 @@ export const MODAL_STATUS = {
 export const MODAL_MODE = {
 	TEXT: 'text',
 	IMAGE: 'image',
+	TRANSLATE: 'translate',
 };
 
 export const ALLOWED_TEXT_BLOCKS = [
