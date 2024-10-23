@@ -7,11 +7,13 @@ import {
 	ModalStatus,
 	ModalSelection,
 	ModalSettings,
+	ModalLanguages,
 } from 'types/modal';
 import {
 	SetStatusAction,
 	SetSelectionAction,
 	SetModeAction,
+	SetLanguageAction,
 	GetSettingsAction,
 	SetSettingsAction,
 } from 'types/store';
@@ -52,6 +54,17 @@ const actions = {
 		return {
 			type: ACTIONS.SET_MODE,
 			payload: mode,
+		};
+	},
+	/**
+	 * Set action for the store.
+	 * @param {Languages} languages
+	 * @return {SetLanguageAction} Action object.
+	 */
+	setLanguages(languages: ModalLanguages): SetLanguageAction {
+		return {
+			type: ACTIONS.SET_TRANSLATION_LANGUAGES,
+			payload: languages,
 		};
 	},
 	/**

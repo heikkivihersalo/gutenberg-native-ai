@@ -5,6 +5,7 @@ import type {
 	ModalMode,
 	ModalSelection,
 	ModalStatus,
+	ModalLanguages,
 	ModalSettings,
 } from 'types/modal';
 import type { Store } from 'types/store';
@@ -33,6 +34,13 @@ const selectors = {
 	 */
 	getMode(state: Store): ModalMode {
 		return state.mode;
+	},
+	/**
+	 * Get current languages from store state
+	 * @param {Store} state Store state
+	 */
+	getLanguages(state: Store): ModalLanguages {
+		return state.languages;
 	},
 	/**
 	 * Get current settings from store state

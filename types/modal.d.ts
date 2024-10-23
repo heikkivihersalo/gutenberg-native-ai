@@ -31,3 +31,8 @@ type ModalSettings = {
 	has_api_key: boolean;
 	[key: string]: any;
 };
+
+type ModalLanguages = {
+	from: string;
+	to: string;
+};
