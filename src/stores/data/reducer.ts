@@ -43,8 +43,8 @@ const initialSettings: ModalSettings = {
 const initialMode: ModalMode = MODAL_MODE.TEXT as ModalMode;
 
 const initialLanguages: ModalLanguages = {
-	from: 'en',
-	to: 'fi',
+	from: 'english',
+	to: 'finnish',
 };
 
 /**
