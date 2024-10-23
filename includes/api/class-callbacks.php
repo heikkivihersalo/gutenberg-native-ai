@@ -90,6 +90,23 @@ final class Callbacks {
 	}
 
 	/**
+	 * Translate text content through Open AI
+	 *
+	 * @param \WP_REST_Request $request Request object
+	 * @return \WP_REST_Response|\WP_Error Response object
+	 * @throws \Exception If user does not have sufficient permissions.
+	 */
+	public static function translate_text( \WP_REST_Request $request ): \WP_REST_Response|\WP_Error {
+		try {
+			$result = Utils::translate_open_ai_text_content( $request );
+		} catch ( \Exception $e ) {
+			return new \WP_Error( 'error_' . $e->getCode(), $e->getMessage() );
+		}
+
+		return new \WP_REST_Response( $result, 200 );
+	}
+
+	/**
 	 * Generate content through Open AI
 	 *
 	 * @param \WP_REST_Request $request Request object

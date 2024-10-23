@@ -127,6 +127,21 @@ class Routes {
 		);
 
 		/**
+		 * Route for translating text content
+		 *
+		 * @method POST
+		 */
+		register_rest_route(
+			$this->name . '/v' . $this->version,
+			'/text/translate',
+			array(
+				'methods'             => \WP_REST_Server::EDITABLE, // Alias for GET transport method.
+				'callback'            => array( Callbacks::class, 'translate_text' ),
+				'permission_callback' => Permissions::ADMIN->get_callback(),
+			)
+		);
+
+		/**
 		 * Route for generating image content
 		 *
 		 * @method POST
