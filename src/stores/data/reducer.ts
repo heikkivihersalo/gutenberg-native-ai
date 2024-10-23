@@ -30,8 +30,12 @@ const initialSelection: ModalSelection = {
 };
 
 const initialSettings: ModalSettings = {
-	model: 'text',
 	tone_of_voice: 'none',
+	has_api_key: false,
+	model: {
+		image: 'dall-e-3',
+		text: 'gpt-4o-mini',
+	},
 };
 
 const initialMode: ModalMode = MODAL_MODE.TEXT as ModalMode;
