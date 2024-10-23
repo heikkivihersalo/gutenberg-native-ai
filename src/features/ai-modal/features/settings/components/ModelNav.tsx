@@ -7,7 +7,9 @@ import { useSelect, useDispatch } from '@wordpress/data';
 /**
  * Internal dependencies
  */
+import { DATA_STORE } from '@constants/stores';
 import ModelNavItem from './ModelNavItem';
+
 import type { ModalMode } from 'types/modal';
 
 import style from '../index.module.css';
@@ -19,11 +21,11 @@ import style from '../index.module.css';
 const ModelNav = () => {
 	const { mode } = useSelect((select: WPAny) => {
 		return {
-			mode: select('theme/ai').getMode() as ModalMode,
+			mode: select(DATA_STORE).getMode() as ModalMode,
 		};
 	}, []);
 
-	const { setMode } = useDispatch('theme/ai');
+	const { setMode } = useDispatch(DATA_STORE);
 
 	return (
 		<div className={style.navContainer}>

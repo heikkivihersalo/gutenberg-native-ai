@@ -8,6 +8,8 @@ import { useSelect, useDispatch } from '@wordpress/data';
  * Internal dependencies
  */
 import SettingsNavItem from './SettingsNavItem';
+
+import { DATA_STORE } from '@constants/stores';
 import { TONE_OF_VOICE } from '@constants/options';
 
 import type { ModalSettings } from 'types/modal';
@@ -18,14 +20,14 @@ import style from '../index.module.css';
  * General settings navigation component
  * @return {JSX.Element} General settings navigation component
  */
-const SettingsNav = () => {
+const SettingsNav = (): JSX.Element => {
 	const { settings } = useSelect((select: WPAny) => {
 		return {
-			settings: select('theme/ai').getSettings() as ModalSettings,
+			settings: select(DATA_STORE).getSettings() as ModalSettings,
 		};
 	}, []);
 
-	const { setSettings } = useDispatch('theme/ai');
+	const { setSettings } = useDispatch(DATA_STORE);
 
 	return (
 		<div className={style.navContainer}>

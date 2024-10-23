@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { ACTIONS } from '@constants/actions';
+import { ACTIONS } from '@constants/stores';
 import {
 	ModalMode,
 	ModalStatus,

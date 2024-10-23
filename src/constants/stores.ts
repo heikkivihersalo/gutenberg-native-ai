@@ -1,3 +1,5 @@
+export const DATA_STORE = 'gutenberg-native-ai';
+
 export const ACTIONS = {
 	GET_TEXT: 'GET_TEXT',
 	SET_TEXT: 'SET_TEXT',

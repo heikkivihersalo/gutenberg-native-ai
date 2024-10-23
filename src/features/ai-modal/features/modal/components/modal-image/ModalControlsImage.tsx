@@ -19,8 +19,9 @@ import Settings from '../../../settings';
 import ImagePreview from './ImagePreview';
 
 import { MODAL_STATUS } from '@constants/modal';
+import { DATA_STORE } from '@constants/stores';
 
-import type { ModalStatus, ModalSelection } from 'types/modal';
+import type { ModalSettings, ModalStatus } from 'types/modal';
 
 import styles from '../../index.module.css';
 
@@ -30,14 +31,14 @@ import styles from '../../index.module.css';
  */
 const ModalImage = (): JSX.Element | null => {
 	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
-	const { status } = useSelect((select: WPAny) => {
+	const { status, settings } = useSelect((select: WPAny) => {
 		return {
-			status: select('theme/ai').getStatus() as ModalStatus,
-			selection: select('theme/ai').getSelection() as ModalSelection,
+			status: select(DATA_STORE).getStatus() as ModalStatus,
+			settings: select(DATA_STORE).getSettings() as ModalSettings,
 		};
 	}, []);
 
-	const { setStatus, setSelection } = useDispatch('theme/ai');
+	const { setStatus, setSelection } = useDispatch(DATA_STORE);
 	const { getImage } = useChatGPT();
 
 	const handleCLose = () => {
@@ -85,7 +86,7 @@ const ModalImage = (): JSX.Element | null => {
 	};
 
 	return (
-		<Form onSubmit={generateContent}>
+		<Form onSubmit={generateContent} hasApiKey={settings.has_api_key}>
 			<div className={styles.controlContainer}>
 				<FormInput
 					placeholder={__(

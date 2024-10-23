@@ -74,7 +74,7 @@ final class Utils {
 		}
 
 		$encryptor         = new Encryption();
-		$encrypted_api_key = $encryptor->encrypt( $body['api_key'] ?? $current['api_key'] ?? '' );
+		$encrypted_api_key = $encryptor->encrypt( $body['api_key'] ?? '' );
 
 		$update = update_option(
 			'gutenberg_native_ai',

@@ -7,14 +7,15 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { useAdminForm } from '@hooks';
-import FormInput from './FormInput';
-import FormSelect from './FormSelect';
-
+import { API_PATH } from '@constants/api';
 import {
 	TONE_OF_VOICE,
 	OPEN_AI_TEXT_MODEL,
 	OPEN_AI_IMAGE_MODEL,
 } from '@constants/options';
+
+import FormInput from './FormInput';
+import FormSelect from './FormSelect';
 
 import type { ChatGPTFormData } from 'types/admin';
 
@@ -26,7 +27,7 @@ import styles from '../../index.module.css';
  */
 const Form = (): JSX.Element | null => {
 	const { formData, handleChange, handleSave } = useAdminForm({
-		path: 'gutenberg-native-ai/v1/settings',
+		path: API_PATH.GET_SETTINGS,
 		nonce: window.GUTENBERG_NATIVE_AI?.nonce,
 	});
 
@@ -42,7 +43,7 @@ const Form = (): JSX.Element | null => {
 			className={styles.form}
 			onSubmit={(e) => {
 				e.preventDefault();
-				handleSave(formData);
+				handleSave({ data: formData });
 			}}
 		>
 			<h3 className={styles.formHeading}>
