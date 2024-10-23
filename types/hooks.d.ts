@@ -4,6 +4,11 @@ declare module '@hooks' {
 		selection?: string;
 	};
 
+	export type ChatGPTTranslateInput = {
+		selection: string;
+		language: string;
+	};
+
 	export const useChatGPT: () => {
 		getText: ({ prompt, selection }: ChatGPTPromptInput) => Promise<string>;
 		getImage: ({ prompt }: ChatGPTPromptInput) => Promise<ChatGPTImage[]>;
