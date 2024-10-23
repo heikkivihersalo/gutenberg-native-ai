@@ -43,7 +43,7 @@ const Form = (): JSX.Element | null => {
 			className={styles.form}
 			onSubmit={(e) => {
 				e.preventDefault();
-				handleSave(formData);
+				handleSave({ data: formData });
 			}}
 		>
 			<h3 className={styles.formHeading}>
