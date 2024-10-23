@@ -37,7 +37,8 @@ final class Utils {
 		$settings = get_option(
 			'gutenberg_native_ai',
 			array(
-				'model'         => 'gpt-4o-mini',
+				'model_text'    => 'gpt-4o-mini',
+				'model_image'   => 'dall-e-3',
 				'api_key'       => '',
 				'tone_of_voice' => 'none',
 			)
@@ -47,7 +48,8 @@ final class Utils {
 		$decrypted_api_key = $encryptor->decrypt( $settings['api_key'] );
 
 		return array(
-			'model'         => $settings['model'],
+			'model_text'    => $settings['model_text'],
+			'model_image'   => $settings['model_image'],
 			'api_key'       => $decrypted_api_key,
 			'tone_of_voice' => $settings['tone_of_voice'],
 		);
@@ -77,7 +79,8 @@ final class Utils {
 		$update = update_option(
 			'gutenberg_native_ai',
 			array(
-				'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+				'model_text'    => $body['model_text'] ?? $current['model_text'] ?? 'gpt-4o-mini',
+				'model_image'   => $body['model_image'] ?? $current['model_image'] ?? 'dall-e-3',
 				'api_key'       => $encrypted_api_key,
 				'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 			),
@@ -89,7 +92,8 @@ final class Utils {
 		}
 
 		return array(
-			'model'         => $body['model'] ?? $current['model'] ?? 'gpt-4o-mini',
+			'model_text'    => $body['model_text'] ?? $current['model_text'] ?? 'gpt-4o-mini',
+			'model_image'   => $body['model_image'] ?? $current['model_image'] ?? 'dall-e-3',
 			'api_key'       => $body['api_key'] ?? $current['api_key'] ?? '',
 			'tone_of_voice' => $body['tone_of_voice'] ?? $current['tone_of_voice'] ?? 'none',
 		);
@@ -174,7 +178,7 @@ final class Utils {
 		$api           = self::get_chatgpt_settings();
 		$tone_of_voice = $body['tone_of_voice'] ?? 'none';
 		$data          = array(
-			'model'    => $api['model'] ?? 'gpt-4o-mini',
+			'model'    => $api['model_text'] ?? 'gpt-4o-mini',
 			'messages' => array(
 				(object) array(
 					'role'    => 'system',
@@ -223,7 +227,7 @@ final class Utils {
 		$body = json_decode( $request->get_body(), true );
 		$api  = self::get_chatgpt_settings();
 		$data = array(
-			'model'           => 'dall-e-3',
+			'model'           => $api['model_image'] ?? 'dall-e-3',
 			'prompt'          => $body['prompt'],
 			'n'               => 1,
 			'response_format' => 'b64_json',

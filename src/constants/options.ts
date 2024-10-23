@@ -1,5 +1,15 @@
 import { __ } from '@wordpress/i18n';
 
+export const OPEN_AI_TEXT_MODEL = [
+	{ value: 'gpt-4o', label: __('GPT-4o', 'gutenberg-native-ai') },
+	{ value: 'gpt-4o-mini', label: __('GPT-4o mini', 'gutenberg-native-ai') },
+];
+
+export const OPEN_AI_IMAGE_MODEL = [
+	{ value: 'dall-e-3', label: __('DALL-E 3', 'gutenberg-native-ai') },
+	{ value: 'dall-e-2', label: __('DALL-E 2', 'gutenberg-native-ai') },
+];
+
 export const TONE_OF_VOICE = [
 	{ value: 'none', label: __('None', 'gutenberg-native-ai') },
 	{

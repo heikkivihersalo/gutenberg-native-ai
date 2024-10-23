@@ -38,7 +38,7 @@ function useChatGPT(): ReturnProps {
 		prompt,
 		selection,
 	}: ChatGPTPromptInput): Promise<string> => {
-		const response: ChatGPTTextResponse = await apiFetch({
+		const response: unknown = await apiFetch({
 			method: 'POST',
 			path: API_PATH.GENERATE_TEXT,
 			data: {
@@ -47,7 +47,12 @@ function useChatGPT(): ReturnProps {
 			},
 		});
 
-		return response.choices[0].message.content;
+		// TODO: Find a better way to handle this
+		if ((response as ChatGPTError).error) {
+			console.error((response as ChatGPTError).error.message);
+		}
+
+		return (response as ChatGPTTextResponse).choices[0].message.content;
 	};
 
 	/**
@@ -59,7 +64,7 @@ function useChatGPT(): ReturnProps {
 	const getImage = async ({
 		prompt,
 	}: ChatGPTPromptInput): Promise<ChatGPTImage[]> => {
-		const response: ChatGPTImageResponse = await apiFetch({
+		const response: unknown = await apiFetch({
 			method: 'POST',
 			path: API_PATH.GENERATE_IMAGE,
 			data: {
@@ -67,7 +72,12 @@ function useChatGPT(): ReturnProps {
 			},
 		});
 
-		return response.data;
+		// TODO: Find a better way to handle this
+		if ((response as ChatGPTError).error) {
+			console.error((response as ChatGPTError).error.message);
+		}
+
+		return (response as ChatGPTImageResponse).data;
 	};
 
 	return { getText, getImage };

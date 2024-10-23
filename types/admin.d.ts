@@ -1,35 +1,38 @@
 import { ApiPath } from './api';
 
-type ChatGPTAdminRequestData = {
-	model: ChatGPTAdminApiResponse['data']['model'];
-	api_key: ChatGPTAdminApiResponse['data']['api_key'];
-	tone_of_voice: string;
-};
-
-type AdminRequestData = ChatGPTAdminRequestData;
-
-type ChatGPTAdminApiResponse = {
-	status: string;
-	type: string;
-	message: string;
-	data: {
-		model: string;
-		api_key: string;
-		tone_of_voice: string;
-	};
-};
-
-type AdminApiResponse = ChatGPTAdminApiResponse;
-
+/**
+ * ChatGPT
+ */
 type ChatGPTAdminFormProps = {
 	path: ApiPath;
 	nonce: string | undefined;
 };
 
+type ChatGPTFormData = {
+	model_text: string;
+	model_image: string;
+	api_key: string;
+	tone_of_voice: string;
+};
+
+type ChatGPTAdminApiResponse = {
+	status: string;
+	type: string;
+	message: string;
+	data: ChatGPTFormData;
+};
+
+/**
+ * Admin Request Types
+ */
 type AdminFormProps = ChatGPTAdminFormProps;
 
+type AdminFormData = ChatGPTFormData;
+
+type AdminApiResponse = ChatGPTAdminApiResponse;
+
 type AdminFormHook = {
-	formData: AdminRequestData;
+	formData: AdminFormData;
 	handleChange: React.ChangeEventHandler<HTMLInputElement>;
-	handleSave: ({ data }: { data: AdminRequestData }) => void;
+	handleSave: ({ data }: { data: AdminFormData }) => void;
 };

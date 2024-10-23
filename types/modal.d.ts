@@ -23,7 +23,10 @@ type ModalSelection = {
 type ModalMode = (typeof MODAL_MODE)[keyof typeof MODAL_MODE];
 
 type ModalSettings = {
-	model: string;
+	model: {
+		image: string;
+		text: string;
+	};
 	tone_of_voice: string;
 	has_api_key: boolean;
 	[key: string]: any;
