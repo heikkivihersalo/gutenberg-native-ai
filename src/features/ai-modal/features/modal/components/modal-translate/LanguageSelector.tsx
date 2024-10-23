@@ -16,7 +16,6 @@ import styles from '../../index.module.css';
 
 /**
  * LanguageSelector component
-
  * @return {JSX.Element} LanguageSelector component
  */
 const LanguageSelector = (): JSX.Element => {

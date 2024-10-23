@@ -60,8 +60,9 @@ function useChatGPT(): ReturnProps {
 	/**
 	 * Translate text content from ChatGPT
 	 * @param {Object} props
-	 * @param {string} props.selection
-	 * @param {string} props.language
+	 * @param {string} props.selection text to translate
+	 * @param {string} props.languageFrom language to translate from
+	 * @param {string} props.languageTo language to translate to
 	 * @return {Promise<string>} Translated text
 	 */
 	const translate = async ({
