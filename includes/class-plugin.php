@@ -182,7 +182,7 @@ class Plugin {
 	 * Register all of the hooks related to the options area functionality
 	 * of the plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   private
 	 */
 	private function define_options_page() {

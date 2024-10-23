@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * This class defines all code necessary handle the admin options area.
  *
- * @since      0.1.3
+ * @since      0.2.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -39,7 +39,7 @@ class Options {
 	/**
 	 * The admin page name
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   protected
 	 * @var      string    ADMIN_PAGE_NAME    The name of the admin page
 	 */
@@ -60,7 +60,7 @@ class Options {
 	/**
 	 * Check user permissions
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @return void
 	 */
 	public function check_user_permissions(): void {
@@ -86,7 +86,7 @@ class Options {
 	/**
 	 * Add the plugin options page to the admin menu under `Settings`
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @return void
 	 */
 	public function add_plugin_options(): void {

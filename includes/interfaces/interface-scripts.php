@@ -3,7 +3,7 @@
  * The enqueue scripts interface.
  *
  * @link       https://www.kotisivu.dev
- * @since      0.1.3
+ * @since      0.2.0
  *
  * @package    Gutenberg_Native_Ai
  */
@@ -13,7 +13,7 @@ namespace Kotisivu\Gutenberg_Native_AI;
 /**
  * The enqueue scripts interface.
  *
- * @since      0.1.3
+ * @since      0.2.0
  * @package    Gutenberg_Native_Ai
  * @author     Heikki Vihersalo <heikki@vihersalo.fi>
  */
@@ -21,7 +21,7 @@ interface ScriptsInterface {
 	/**
 	 * The name of the localized object
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   protected
 	 * @var      string    LOCALIZED_OBJECT_NAME    The name of the localized object
 	 */
@@ -30,7 +30,7 @@ interface ScriptsInterface {
 	/**
 	 * Check if the plugin's assets exist and display a notice if they don't
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   public
 	 * @param    string $path The path to the asset
 	 * @return   bool
@@ -40,7 +40,7 @@ interface ScriptsInterface {
 	/**
 	 * Register the stylesheets for the plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   public
 	 * @param    string $asset_path   The path to the asset
 	 * @param    string $style_url    The URL to the stylesheet
@@ -52,7 +52,7 @@ interface ScriptsInterface {
 	/**
 	 * Register the scripts for the plugin.
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   public
 	 * @param    string $asset_path   The path to the asset
 	 * @param    string $script_url   The URL to the script
@@ -64,7 +64,7 @@ interface ScriptsInterface {
 	/**
 	 * Run the editor scripts and styles
 	 *
-	 * @since    0.1.3
+	 * @since    0.2.0
 	 * @access   public
 	 * @param    string $hook The current admin page
 	 * @return   void
