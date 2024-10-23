@@ -25,6 +25,7 @@ import type {
 	ModalStatus,
 	ModalSelection,
 	ModalSettings,
+	ModalMode,
 	ModalLanguages,
 } from 'types/modal';
 
@@ -35,12 +36,13 @@ import styles from '../../index.module.css';
  * @return {JSX.Element} Popover component
  */
 const ModalControlsTranslate = (): JSX.Element | null => {
-	const { status, selection, settings, languages } = useSelect(
+	const { status, selection, settings, languages, mode } = useSelect(
 		(select: WPAny) => {
 			return {
 				status: select(DATA_STORE).getStatus() as ModalStatus,
 				selection: select(DATA_STORE).getSelection() as ModalSelection,
 				settings: select(DATA_STORE).getSettings() as ModalSettings,
+				mode: select(DATA_STORE).getMode() as ModalMode,
 				languages: select(DATA_STORE).getLanguages() as ModalLanguages,
 			};
 		},
@@ -99,9 +101,11 @@ const ModalControlsTranslate = (): JSX.Element | null => {
 		>
 			<div className={styles.controlContainer}>
 				<LanguageSelector />
-				<FormSubmitButton status={status} />
-				<CloseButton closeCallback={closeModal} />
-				<Settings />
+				<div className={styles.controlContainerButtons}>
+					<FormSubmitButton status={status} mode={mode} />
+					<CloseButton closeCallback={closeModal} />
+					<Settings />
+				</div>
 			</div>
 			<WarningText />
 		</Form>

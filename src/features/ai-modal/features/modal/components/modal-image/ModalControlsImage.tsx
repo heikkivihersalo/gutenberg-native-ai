@@ -21,7 +21,7 @@ import ImagePreview from './ImagePreview';
 import { MODAL_STATUS } from '@constants/modal';
 import { DATA_STORE } from '@constants/stores';
 
-import type { ModalSettings, ModalStatus } from 'types/modal';
+import type { ModalSettings, ModalStatus, ModalMode } from 'types/modal';
 
 import styles from '../../index.module.css';
 
@@ -31,10 +31,11 @@ import styles from '../../index.module.css';
  */
 const ModalImage = (): JSX.Element | null => {
 	const [preview, setPreview] = useState<ChatGPTImage[] | null>(null);
-	const { status, settings } = useSelect((select: WPAny) => {
+	const { status, settings, mode } = useSelect((select: WPAny) => {
 		return {
 			status: select(DATA_STORE).getStatus() as ModalStatus,
 			settings: select(DATA_STORE).getSettings() as ModalSettings,
+			mode: select(DATA_STORE).getMode() as ModalMode,
 		};
 	}, []);
 
@@ -94,9 +95,11 @@ const ModalImage = (): JSX.Element | null => {
 						'gutenberg-native-ai'
 					)}
 				/>
-				<FormSubmitButton status={status} />
-				<CloseButton closeCallback={handleCLose} />
-				<Settings />
+				<div className={styles.controlContainerButtons}>
+					<FormSubmitButton status={status} mode={mode} />
+					<CloseButton closeCallback={handleCLose} />
+					<Settings />
+				</div>
 			</div>
 			<ImagePreview preview={preview} />
 			<WarningText />
