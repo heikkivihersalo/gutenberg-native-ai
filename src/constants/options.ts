@@ -61,3 +61,25 @@ export const TONE_OF_VOICE = [
 		label: __('Authoritative and Expert', 'gutenberg-native-ai'),
 	},
 ];
+
+export const AVAILABLE_LANGUAGES = [
+	{ value: 'zh', label: __('Chinese', 'gutenberg-native-ai') },
+	{ value: 'nl', label: __('Dutch', 'gutenberg-native-ai') },
+	{ value: 'en', label: __('English', 'gutenberg-native-ai') },
+	{ value: 'fi', label: __('Finnish', 'gutenberg-native-ai') },
+	{ value: 'fr', label: __('French', 'gutenberg-native-ai') },
+	{ value: 'de', label: __('German', 'gutenberg-native-ai') },
+	{ value: 'it', label: __('Italian', 'gutenberg-native-ai') },
+	{ value: 'ja', label: __('Japanese', 'gutenberg-native-ai') },
+	{ value: 'ko', label: __('Korean', 'gutenberg-native-ai') },
+	{ value: 'no', label: __('Norwegian', 'gutenberg-native-ai') },
+	{ value: 'pl', label: __('Polish', 'gutenberg-native-ai') },
+	{ value: 'pt', label: __('Portuguese', 'gutenberg-native-ai') },
+	{ value: 'ro', label: __('Romanian', 'gutenberg-native-ai') },
+	{ value: 'ru', label: __('Russian', 'gutenberg-native-ai') },
+	{ value: 'es', label: __('Spanish', 'gutenberg-native-ai') },
+	{ value: 'sv', label: __('Swedish', 'gutenberg-native-ai') },
+	{ value: 'tr', label: __('Turkish', 'gutenberg-native-ai') },
+	{ value: 'vi', label: __('Vietnamese', 'gutenberg-native-ai') },
+	{ value: 'emoji', label: __('Emoji', 'gutenberg-native-ai') },
+];
