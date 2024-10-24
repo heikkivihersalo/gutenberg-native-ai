@@ -21,7 +21,12 @@ import ImagePreview from './ImagePreview';
 import { MODAL_STATUS } from '@constants/modal';
 import { DATA_STORE } from '@constants/stores';
 
-import type { ModalSettings, ModalStatus, ModalMode } from 'types/modal';
+import type {
+	ModalSettings,
+	ModalStatus,
+	ModalMode,
+	ModalSelection,
+} from 'types/modal';
 
 import styles from '../../index.module.css';
 
@@ -35,6 +40,7 @@ const ModalImage = (): JSX.Element | null => {
 		return {
 			status: select(DATA_STORE).getStatus() as ModalStatus,
 			settings: select(DATA_STORE).getSettings() as ModalSettings,
+			selection: select(DATA_STORE).getSelection() as ModalSelection,
 			mode: select(DATA_STORE).getMode() as ModalMode,
 		};
 	}, []);
