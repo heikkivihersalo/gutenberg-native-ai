@@ -34,6 +34,7 @@ const getButtonText = (mode: ModalMode): string => {
  * @param {Object} props - Component props
  * @param {string} props.status - Popover status
  * @param {string} props.mode - Popover mode
+ * @param {boolean} props.disabled - Button disabled state
  * @return {JSX.Element} SubmitButton component
  */
 const FormSubmitButton = ({
