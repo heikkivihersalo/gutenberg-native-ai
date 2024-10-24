@@ -11,11 +11,12 @@ import { DATA_STORE } from '@constants/stores';
 import { useSelect } from '@wordpress/data';
 
 import type { ModalSettings } from 'types/modal';
-import type { ChatGPTPromptInput } from '@hooks';
+import type { ChatGPTPromptInput, ChatGPTTranslateInput } from '@hooks';
 
 type ReturnProps = {
 	getText: (props: ChatGPTPromptInput) => Promise<string>;
 	getImage: (props: ChatGPTPromptInput) => Promise<ChatGPTImage[]>;
+	translate: (props: ChatGPTTranslateInput) => Promise<string>;
 };
 
 /**
@@ -57,6 +58,37 @@ function useChatGPT(): ReturnProps {
 	};
 
 	/**
+	 * Translate text content from ChatGPT
+	 * @param {Object} props
+	 * @param {string} props.selection text to translate
+	 * @param {string} props.languageFrom language to translate from
+	 * @param {string} props.languageTo language to translate to
+	 * @return {Promise<string>} Translated text
+	 */
+	const translate = async ({
+		selection,
+		languageFrom,
+		languageTo,
+	}: ChatGPTTranslateInput): Promise<string> => {
+		const response: unknown = await apiFetch({
+			method: 'POST',
+			path: API_PATH.TRANSLATE_TEXT,
+			data: {
+				text: selection,
+				languageFrom,
+				languageTo,
+			},
+		});
+
+		// TODO: Find a better way to handle this
+		if ((response as ChatGPTError).error) {
+			console.error((response as ChatGPTError).error.message);
+		}
+
+		return (response as ChatGPTTextResponse).choices[0].message.content;
+	};
+
+	/**
 	 *
 	 * @param {UserInput} props
 	 * @param {FormDataEntryValue | null} props.prompt
@@ -81,7 +113,7 @@ function useChatGPT(): ReturnProps {
 		return (response as ChatGPTImageResponse).data;
 	};
 
-	return { getText, getImage };
+	return { getText, getImage, translate };
 }
 
 export { useChatGPT };

@@ -18,6 +18,7 @@ import Settings from '../../../settings';
 
 import {
 	addBlocksToEditor,
+	closeModal,
 	parseMarkdownToBlocks,
 	replateSelectedText,
 } from '../../../../utils';
@@ -25,7 +26,12 @@ import {
 import { MODAL_STATUS } from '@constants/modal';
 import { DATA_STORE } from '@constants/stores';
 
-import type { ModalStatus, ModalSelection, ModalSettings } from 'types/modal';
+import type {
+	ModalStatus,
+	ModalSelection,
+	ModalSettings,
+	ModalMode,
+} from 'types/modal';
 
 import styles from '../../index.module.css';
 
@@ -34,26 +40,17 @@ import styles from '../../index.module.css';
  * @return {JSX.Element} Popover component
  */
 const ModalControlsText = (): JSX.Element | null => {
-	const { status, selection, settings } = useSelect((select: WPAny) => {
+	const { status, selection, settings, mode } = useSelect((select: WPAny) => {
 		return {
 			status: select(DATA_STORE).getStatus() as ModalStatus,
 			selection: select(DATA_STORE).getSelection() as ModalSelection,
 			settings: select(DATA_STORE).getSettings() as ModalSettings,
+			mode: select(DATA_STORE).getMode() as ModalMode,
 		};
 	}, []);
 
-	const { setStatus, setSelection } = useDispatch(DATA_STORE);
+	const { setStatus } = useDispatch(DATA_STORE);
 	const { getText } = useChatGPT();
-
-	const handleCLose = () => {
-		setStatus(MODAL_STATUS.INITIAL);
-		setSelection({
-			block: null,
-			text: '',
-			start: 0,
-			end: 0,
-		});
-	};
 
 	/**
 	 * Handle generate content
@@ -109,7 +106,7 @@ const ModalControlsText = (): JSX.Element | null => {
 			}
 		}
 
-		handleCLose();
+		closeModal();
 	};
 
 	return (
@@ -121,9 +118,11 @@ const ModalControlsText = (): JSX.Element | null => {
 						'gutenberg-native-ai'
 					)}
 				/>
-				<FormSubmitButton status={status} />
-				<CloseButton closeCallback={handleCLose} />
-				<Settings />
+				<div className={styles.controlContainerButtons}>
+					<FormSubmitButton status={status} mode={mode} />
+					<CloseButton closeCallback={closeModal} />
+					<Settings />
+				</div>
 			</div>
 			<WarningText />
 		</Form>

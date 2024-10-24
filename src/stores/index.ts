@@ -8,7 +8,13 @@ import { createReduxStore, combineReducers, register } from '@wordpress/data';
  */
 import actions from './data/actions.ts';
 import controls from './data/controls.ts';
-import { status, selection, settings, mode } from './data/reducer.ts';
+import {
+	status,
+	selection,
+	settings,
+	mode,
+	languages,
+} from './data/reducer.ts';
 import resolvers from './data/resolvers.ts';
 import selectors from './data/selectors.ts';
 
@@ -21,6 +27,7 @@ const Store = createReduxStore(DATA_STORE, {
 		status,
 		selection,
 		settings,
+		languages,
 		mode,
 	}),
 	resolvers,

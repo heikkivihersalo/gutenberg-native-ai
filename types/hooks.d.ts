@@ -4,9 +4,20 @@ declare module '@hooks' {
 		selection?: string;
 	};
 
+	export type ChatGPTTranslateInput = {
+		selection: string;
+		languageFrom;
+		languageTo;
+	};
+
 	export const useChatGPT: () => {
 		getText: ({ prompt, selection }: ChatGPTPromptInput) => Promise<string>;
 		getImage: ({ prompt }: ChatGPTPromptInput) => Promise<ChatGPTImage[]>;
+		translate: ({
+			selection,
+			languageFrom,
+			languageTo,
+		}: ChatGPTTranslateInput) => Promise<string>;
 	};
 
 	export const useAdminForm: (props: AdminFormProps) => {

@@ -3,7 +3,13 @@
  */
 import { ACTIONS } from '@constants/actions';
 import { API_PATH } from '@constants/api';
-import { ModalMode, ModalSelection, ModalStatus, ModalSettings } from './modal';
+import {
+	ModalMode,
+	ModalSelection,
+	ModalStatus,
+	ModalSettings,
+	ModalLanguages,
+} from './modal';
 
 /**
  * Default Redux Store Generics
@@ -46,6 +52,11 @@ type SetSettingsAction = StoreAction<
 	ModalSettings
 >;
 
+type SetLanguageAction = StoreAction<
+	typeof ACTIONS.SET_TRANSLATION_LANGUAGES,
+	ModalLanguages
+>;
+
 type SettingsApiResponse = StoreApiResponse<ModalSettings>;
 
 /**
@@ -55,11 +66,22 @@ type Store = {
 	mode: ModalMode;
 	status: ModalStatus;
 	selection: ModalSelection;
+	languages: ModalLanguages;
 	settings: ModalSettings;
 };
 
 /**
  * Reducer actions
  */
-type ReducerState = ModalStatus | ModalSelection | ModalSettings;
-type ReducerAction = SetStatusAction | SetSelectionAction | SetSettingsAction;
+type ReducerState =
+	| ModalStatus
+	| ModalSelection
+	| ModalSettings
+	| ModalMode
+	| ModalLanguages;
+type ReducerAction =
+	| SetStatusAction
+	| SetSelectionAction
+	| SetSettingsAction
+	| SetModeAction
+	| SetLanguageAction;

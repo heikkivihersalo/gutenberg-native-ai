@@ -7,22 +7,50 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { MODAL_STATUS } from '@constants/modal';
-import type { ModalStatus } from 'types/modal';
+import type { ModalMode, ModalStatus } from 'types/modal';
 
 import styles from '../../index.module.css';
+
+/**
+ * Get button text
+ * @param {string} mode - Modal mode
+ * @return {string} Button text
+ */
+const getButtonText = (mode: ModalMode): string => {
+	switch (mode) {
+		case 'text':
+			return __('Generate', 'gutenberg-native-ai');
+		case 'image':
+			return __('Generate', 'gutenberg-native-ai');
+		case 'translate':
+			return __('Translate', 'gutenberg-native-ai');
+		default:
+			return __('Generate', 'gutenberg-native-ai');
+	}
+};
 
 /**
  * SubmitButton component
  * @param {Object} props - Component props
  * @param {string} props.status - Popover status
+ * @param {string} props.mode - Popover mode
+ * @param {boolean} props.disabled - Button disabled state
  * @return {JSX.Element} SubmitButton component
  */
-const FormSubmitButton = ({ status }: { status: ModalStatus }): JSX.Element => {
+const FormSubmitButton = ({
+	status,
+	mode,
+	disabled = false,
+}: {
+	status: ModalStatus;
+	mode: ModalMode;
+	disabled?: boolean;
+}): JSX.Element => {
 	return (
 		<button
 			type="submit"
 			className={styles.formButtonSubmit}
-			disabled={status === MODAL_STATUS.LOADING}
+			disabled={status === MODAL_STATUS.LOADING || disabled}
 		>
 			{status === MODAL_STATUS.LOADING ? (
 				<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24}>
@@ -40,7 +68,7 @@ const FormSubmitButton = ({ status }: { status: ModalStatus }): JSX.Element => {
 					/>
 				</svg>
 			) : (
-				__('Generate', 'gutenberg-native-ai')
+				getButtonText(mode)
 			)}
 		</button>
 	);

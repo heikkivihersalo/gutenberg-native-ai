@@ -215,6 +215,81 @@ final class Utils {
 	}
 
 	/**
+	 * Get translation prompt
+	 *
+	 * @since 0.3.0
+	 * @access private
+	 * @param string $languageFrom The language to translate from.
+	 * @param string $languageTo   The language to translate to.
+	 * @return string
+	 */
+	private static function get_translation_prompt( string $languageFrom, string $languageTo ): string {
+		$prompt  = 'You are a helpful assistant that returns text in markdown format.';
+		$prompt .= ' ';
+		$prompt .= 'You will be provided with a text in ' . $languageFrom . ', and your task is to translate it into ' . $languageTo . '.';
+		$prompt .= ' ';
+
+		if ( 'emoji' === $languageTo ) {
+			$prompt .= 'Do not use any regular text. Do your best with emojis only. Return only the result.';
+		} else {
+			$prompt .= 'Return only the result.';
+		}
+
+		return $prompt;
+	}
+
+	/**
+	 * Translate content from Open AI
+	 *
+	 * @since 0.3.0
+	 * @access public
+	 * @param \WP_REST_Request $request Request object.
+	 * @return Object
+	 * @throws \Exception If failed to update contact information.
+	 */
+	public static function translate_open_ai_text_content( \WP_REST_Request $request ): array {
+		$body         = json_decode( $request->get_body(), true );
+		$api          = self::get_chatgpt_settings();
+		$languageFrom = $body['languageFrom'] ?? '';
+		$languageTo   = $body['languageTo'] ?? '';
+		$data         = array(
+			'model'    => $api['model_text'] ?? 'gpt-4o-mini',
+			'messages' => array(
+				(object) array(
+					'role'    => 'system',
+					'content' => self::get_translation_prompt( $languageFrom, $languageTo ),
+				),
+				(object) array(
+					'role'    => 'user',
+					'content' => $body['text'],
+				),
+			),
+		);
+
+		$response = wp_remote_post(
+			'https://api.openai.com/v1/chat/completions',
+			array(
+				'method'    => 'POST',
+				'body'      => wp_json_encode( $data ),
+				'headers'   => array(
+					'Content-Type'  => 'application/json',
+					'Authorization' => 'Bearer ' . $api['api_key'],
+				),
+				'sslverify' => false,
+				'timeout'   => 60,
+			),
+		);
+
+		if ( ! is_wp_error( $response ) ) {
+			$body = json_decode( wp_remote_retrieve_body( $response ), true );
+			return $body;
+		} else {
+			$error_message = $response->get_error_message();
+			throw new \Exception( esc_html( $error_message ) );
+		}
+	}
+
+	/**
 	 * Get content from Open AI
 	 *
 	 * @since 0.1.0

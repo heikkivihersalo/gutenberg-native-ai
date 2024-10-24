@@ -11,6 +11,7 @@ import { MODAL_STATUS } from '@constants/modal';
 import { DATA_STORE } from '@constants/stores';
 
 import ModalControlsText from './components/modal-text/ModalControlsText';
+import ModalControlsTranslate from './components/modal-translate/ModalControlsTranslate';
 import ModalControlsImage from './components/modal-image/ModalControlsImage';
 
 import type { ModalStatus } from 'types/modal';
@@ -46,6 +47,7 @@ const Modal = ({
 		<Popover placement="bottom" anchor={anchor}>
 			{mode === 'text' && <ModalControlsText />}
 			{mode === 'image' && <ModalControlsImage />}
+			{mode === 'translate' && <ModalControlsTranslate />}
 		</Popover>
 	);
 };

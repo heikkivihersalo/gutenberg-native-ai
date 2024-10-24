@@ -7,6 +7,7 @@ import type {
 	ModalMode,
 	ModalStatus,
 	ModalSelection,
+	ModalLanguages,
 	ModalSettings,
 } from 'types/modal';
 
@@ -14,6 +15,7 @@ import type {
 	SetStatusAction,
 	SetSelectionAction,
 	SetSettingsAction,
+	SetLanguageAction,
 	ReducerState,
 } from 'types/store';
 
@@ -39,6 +41,11 @@ const initialSettings: ModalSettings = {
 };
 
 const initialMode: ModalMode = MODAL_MODE.TEXT as ModalMode;
+
+const initialLanguages: ModalLanguages = {
+	from: 'english',
+	to: 'finnish',
+};
 
 /**
  * Status reducer
@@ -92,6 +99,26 @@ export function mode(
 	}
 
 	return action.payload;
+}
+
+/**
+ * Languages reducer
+ * @param {ReducerState} state
+ * @param {SetLanguageAction} action
+ * @return {ReducerState} New state
+ */
+export function languages(
+	state: ModalLanguages = initialLanguages,
+	action: SetLanguageAction
+): ReducerState {
+	if (action.type !== 'SET_TRANSLATION_LANGUAGES') {
+		return state;
+	}
+
+	return {
+		...state,
+		...action.payload,
+	};
 }
 
 /**
