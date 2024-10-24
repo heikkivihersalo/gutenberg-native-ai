@@ -144,6 +144,14 @@
 	font-weight: 700;
 }
 
+.languageSelectorWarningText {
+	font-size: 0.675rem;
+	font-weight: 700;
+	color: var(--wp-components-color-foreground, #1e1e1e);
+
+	margin-right: 1rem;
+}
+
 /** ======================
  ** BUTTONS
  ** ==================== */
