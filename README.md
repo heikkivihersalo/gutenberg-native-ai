@@ -1,6 +1,37 @@
-# Gutenberg Native AI
+<p align="center">
+  <img src="readme.jpg" width="100%" align="center" alt="Hero image" />
+  <h1 align="center">Gutenberg Native AI</h1>
+  <p align="center">
+    Experimental plugin that extends the Gutenberg editor with AI features designed to work natively with WordPress. Written in Typescript, React and PHP.
+  </p>
+</p>
 
-This project is meant to integrate AI features natively into the Gutenberg editor using shortcuts to handle the user's commands.
+<br/>
+
+<p align="center">
+	<a href="https://github.com/heikkivihersalo/gutenberg-native-ai/commits/main/" rel="nofollow"><img src="https://img.shields.io/github/last-commit/heikkivihersalo/gutenberg-native-ai/main" alt="Kotisivu Block Theme last commit"></a>
+	<a href="https://www.linkedin.com/in/vihersalo/" rel="nofollow"><img src="https://img.shields.io/badge/created%20by-@heikkivihersalo-AD0048.svg" alt="Created by Heikki Vihersalo"></a>
+	<a href="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-php.yml" rel="nofollow"><img src="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-php.yml/badge.svg" alt="PHP Linting badge"></a>
+	<a href="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-js.yml" rel="nofollow"><img src="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-js.yml/badge.svg" alt="JS Linting badge"></a>
+	<a href="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-css.yml" rel="nofollow"><img src="https://github.com/heikkivihersalo/gutenberg-native-ai/actions/workflows/lint-css.yml/badge.svg" alt="CSS Linting badge"></a>
+	<a href="https://lmo.wordpress.org/about/license/" rel="nofollow"><img src="https://img.shields.io/github/license/heikkivihersalo/gutenberg-native-ai" alt="License"></a>
+</p>
+
+<div align="center">
+  <a href="https://platform.openai.com/">Open AI Platform</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://react.dev/">React</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.typescriptlang.org/">TypeScript</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.php.net/">PHP</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://www.linkedin.com/in/vihersalo/">@heikkivihersalo</a>
+  <br />
+</div>
+
+<br/>
+<br/>
 
 > [!NOTE]
 > Please do note that this project is still in its early stages and is not yet ready for serious production use. It basically works but use it at your own risk.
