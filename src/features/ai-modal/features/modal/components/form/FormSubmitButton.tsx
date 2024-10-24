@@ -39,15 +39,17 @@ const getButtonText = (mode: ModalMode): string => {
 const FormSubmitButton = ({
 	status,
 	mode,
+	disabled = false,
 }: {
 	status: ModalStatus;
 	mode: ModalMode;
+	disabled?: boolean;
 }): JSX.Element => {
 	return (
 		<button
 			type="submit"
 			className={styles.formButtonSubmit}
-			disabled={status === MODAL_STATUS.LOADING}
+			disabled={status === MODAL_STATUS.LOADING || disabled}
 		>
 			{status === MODAL_STATUS.LOADING ? (
 				<svg xmlns="http://www.w3.org/2000/svg" width={24} height={24}>
