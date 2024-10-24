@@ -102,7 +102,11 @@ const ModalControlsTranslate = (): JSX.Element | null => {
 			<div className={styles.controlContainer}>
 				<LanguageSelector />
 				<div className={styles.controlContainerButtons}>
-					<FormSubmitButton status={status} mode={mode} />
+					<FormSubmitButton
+						status={status}
+						mode={mode}
+						disabled={selection.start === selection.end}
+					/>
 					<CloseButton closeCallback={closeModal} />
 					<Settings />
 				</div>
