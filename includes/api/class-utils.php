@@ -219,17 +219,17 @@ final class Utils {
 	 *
 	 * @since 0.3.0
 	 * @access private
-	 * @param string $languageFrom The language to translate from.
-	 * @param string $languageTo   The language to translate to.
+	 * @param string $language_from The language to translate from.
+	 * @param string $language_to   The language to translate to.
 	 * @return string
 	 */
-	private static function get_translation_prompt( string $languageFrom, string $languageTo ): string {
+	private static function get_translation_prompt( string $language_from, string $language_to ): string {
 		$prompt  = 'You are a helpful assistant that returns text in markdown format.';
 		$prompt .= ' ';
-		$prompt .= 'You will be provided with a text in ' . $languageFrom . ', and your task is to translate it into ' . $languageTo . '.';
+		$prompt .= 'You will be provided with a text in ' . $language_from . ', and your task is to translate it into ' . $language_to . '.';
 		$prompt .= ' ';
 
-		if ( 'emoji' === $languageTo ) {
+		if ( 'emoji' === $language_to ) {
 			$prompt .= 'Do not use any regular text. Do your best with emojis only. Return only the result.';
 		} else {
 			$prompt .= 'Return only the result.';
@@ -248,16 +248,16 @@ final class Utils {
 	 * @throws \Exception If failed to update contact information.
 	 */
 	public static function translate_open_ai_text_content( \WP_REST_Request $request ): array {
-		$body         = json_decode( $request->get_body(), true );
-		$api          = self::get_chatgpt_settings();
-		$languageFrom = $body['languageFrom'] ?? '';
-		$languageTo   = $body['languageTo'] ?? '';
-		$data         = array(
+		$body          = json_decode( $request->get_body(), true );
+		$api           = self::get_chatgpt_settings();
+		$language_from = $body['languageFrom'] ?? '';
+		$language_to   = $body['languageTo'] ?? '';
+		$data          = array(
 			'model'    => $api['model_text'] ?? 'gpt-4o-mini',
 			'messages' => array(
 				(object) array(
 					'role'    => 'system',
-					'content' => self::get_translation_prompt( $languageFrom, $languageTo ),
+					'content' => self::get_translation_prompt( $language_from, $language_to ),
 				),
 				(object) array(
 					'role'    => 'user',
